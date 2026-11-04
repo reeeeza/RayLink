@@ -10,3 +10,5 @@ Restore each platform's bundled LibXray.xcframework from the encrypted Developme
 Changes: native subscription offer redemption and guidance; foreground entitlement refresh; privacy-gated verification; race-safe iOS leases, Apple/server expiry limits, stable profile identity and revocation disconnection; version label; explicit local-data removal and first-launch reinstall guard; Persian Premium guidance.
 
 Release archives and App Store exports passed; both uploads accepted. Pure lease/profile regressions passed. Real sandbox activation, restoration and persistence remain UNVERIFIED while Apple redemption testing continues. Neither app submitted for review. Do not claim this milestone passes release acceptance solely from build success.
+
+Latest status, November 3, 2026: France deselected, China still excluded. Standard-encryption declaration saved with France distribution No. Mac 1.0.2 (181) submitted and verified Waiting for Review; iOS/iPadOS 1.0.2 (181) also verified Waiting for Review. Manual release retained. Production redemption/activation remains unverified. See RELEASE-STATUS-181.txt for the current record.
