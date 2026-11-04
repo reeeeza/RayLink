@@ -14,7 +14,7 @@ ACTUAL DIAGNOSIS AND LIMITS
 
 DELIVERED
 - Corrected signed development app installed at /Applications/V2S.app: 1.0.2 (182), same bundle ID and team. Original installed 181 is preserved under checkpoints/redeem-20261103/Installed-181.app; the pre-edit source checkpoint is before-edit-source.tgz. No user data or entitlement was deleted.
-- Release archive and Mac App Store export: release/1.0.2-182/V2S.xcarchive and V2S.pkg. Prepared only; 182 has not been uploaded, submitted or released. Existing Mac and iOS build-181 submissions were left untouched.
+- Release archive and Mac App Store export: release/1.0.2-182/V2S.xcarchive and V2S.pkg. 182 has now uploaded, processed and been submitted for Mac App Review, replacing the pending Mac build 181. Status: Waiting for Review. iOS build 181 remains unchanged. Public release remains manual.
 
 VERIFIED
 - Focused compiled production recovery-helper tests pass: unfinished recovery, duplicate delivery, latest plan ordering, valid fallback after a rejected candidate, verification-outage retry, cancellation, expiry, installation classification and cancellation/network/storefront error mapping. These are controlled tests, not live Apple code redemptions.
@@ -26,7 +26,7 @@ VERIFIED
 
 PRODUCTION ACCEPTANCE — STILL REQUIRED
 Starting state: Premium locked, no Premium server profiles. No new verified production entitlement, Premium connection, entitlement persistence after restart, or production Restore success is claimed. Invalid/expired/used/ineligible production-code UI cases are owned by Apple and have not been consumed/tested against a production copy in this pass.
-Exact next distribution step: authorize uploading 182 and replacing/resubmitting the pending Mac build 181, then obtain Apple's approval and authorized manual release. Install 182 through the Mac App Store using the same purchasing account. Complete one authorized production offer, including any Apple authentication/terms confirmation; verify returned transaction/server entitlement, a real Premium server connection, quit/reopen persistence, and user-driven Restore without redeeming again. Do not substitute TestFlight or development evidence for that customer-flow acceptance.
+Distribution update: upload, Mac build replacement and submission of 182 are complete. Exact next distribution requirement: obtain Apple's approval and authorized manual release. Install 182 through the Mac App Store using the same purchasing account. Complete one authorized production offer, including any Apple authentication/terms confirmation; verify returned transaction/server entitlement, a real Premium server connection, quit/reopen persistence, and user-driven Restore without redeeming again. Do not substitute TestFlight or development evidence for that customer-flow acceptance.
 
 REFERENCES
 Apple supported redemption callback and external-redemption recovery:

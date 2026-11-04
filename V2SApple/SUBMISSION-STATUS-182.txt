@@ -1,0 +1,21 @@
+V2S MAC BUILD 182 — SUBMISSION STATUS — November 3, 2026
+
+COMPLETED
+Authorized by the user's instruction to continue after the explicit proposal to upload 182, replace pending Mac 181 and resubmit. Xcode uploaded 182 successfully; Apple processed the build. Removed only the pending macOS version from review, selected 182, preserved the review metadata and added accurate correction/testing notes, then submitted only macOS App 1.0.2 (182).
+
+VERIFIED LIVE
+- Mac V2S 1.0.2 (182): Waiting for Review.
+- Apple submission confirmation: 1 Item Submitted.
+- Submission ID: 50b68cd3-0165-4bc6-9315-fe8bf8684135.
+- Build ID: bcaef8cd-4791-4725-97bb-c95f664913f5.
+- New build export declaration: bundled standard encryption instead of/in addition to Apple's OS encryption; France distribution: No. Missing Compliance cleared and TestFlight showed Ready to Submit before attachment.
+- Manually release this version remains selected. No public release performed.
+- iOS/iPadOS 1.0.2 (181) independently remains Waiting for Review, manual release; no iOS submission or build changed during this Mac replacement.
+- App availability remains the earlier France/China exclusion; no availability changes were made in this pass.
+
+REMAINING
+Apple approval and separately authorized manual production release of the corrected Mac build. Then install that build through the Mac App Store on the existing regular purchasing account and complete the authorized production offer redemption, verified service entitlement, actual Premium connection, quit/reopen entitlement persistence and user-driven Restore without redeeming again. These production acceptance checks remain unverified. No sandbox code or extra production code was consumed in this pass, and no local entitlement override was introduced.
+
+EVIDENCE
+Mac-182-Submitted.png and Mac-182-Review-Details.png.
+Upload.log records Apple's Upload succeeded / EXPORT SUCCEEDED result; no credential/code data is included in this status note.
