@@ -1,0 +1,40 @@
+V2S 1.0.2 (181) — CURRENT REPORT — 2026-11-03
+
+COMPLETED CHANGES
+Native Apple redemption entry and clear subscription-code guidance. Foreground entitlement refresh. iOS race-safe expiry leases and premium-disconnection handling. Mac access now capped by both Apple and server expiry. Stable iOS premium profile identity. Privacy-gated entitlement checks. Local-data deletion and first-launch reinstall safeguards. Mac version label. Persian Premium guidance and English/Persian store descriptions and keywords. Android excluded.
+
+VERIFIED
+PASS — macOS and iOS Release archives and signed App Store exports.
+PASS — macOS code-signature and Apple installer-signature checks.
+PASS — Apple validated and accepted both uploads; both builds processed and attached to version 1.0.2 drafts.
+PASS — new Mac debug181 runs, sidebar shows 1.0.2 (181). iPhone181 installed and launched preserving existing user profile.
+PASS — focused lease expiry/stale-response/revocation-race tests and Mac profile identity/persistence regressions. These are not real transaction acceptance tests.
+PASS — released Mac App Store V2S 1.0.1 (169) installed in /Applications with Mac App Store receipt, launched for production verification.
+PASS — sandbox Mac account signed out; regular App Store account preserved.
+
+PRODUCTION OFFERS
+PASS — 500 monthly one-month-free and 500 yearly twelve-months-free production codes generated and downloaded. New, existing and expired subscribers eligible, subject to Apple account/storefront rules. 174 storefronts, France included, China excluded. Expire Apr 29, 2027 as shown by App Store Connect. Auto-renewal remains enabled. Existing USD2.99/month, USD19.99/year and localized CAD3.99/month, CAD24.99/year preserved.
+Code files remain private in Downloads/V2S-Production-Subscription-Codes-20261103; not committed or included in public backups.
+
+REAL REDEMPTION STATUS
+PASS — real production monthly code recognized inside released Mac App Store V2S, with the regular Apple Account. Apple displays 3-day introductory trial followed by one-month free offer, then $2.99/month beginning Dec 6, 2026. User authorized redemption.
+BLOCKED — Apple production confirmation renders terms but no usable confirmation control. No completed transaction or Premium activation claimed. The same missing-control stall was reproduced directly in the Mac App Store, outside V2S. App Store restart and one final direct attempt are in progress.
+Diagnostic evidence: Apple purchase services log AMSErrorDomain code 4 response-data decoding errors and code 204 decoration failure. These are observed errors, not a proven root cause. System HTTP/SOCKS proxy flags are disabled. An existing Tailscale VPN was preserved.
+Sandbox testing stopped at user instruction. Initial monthly sandbox attempts failed; yearly sandbox recognized one-year-free terms but Apple confirmation stalled without usable confirmation controls. No successful sandbox transaction or Premium activation is claimed.
+BLOCKED — real iOS production verification requires an approved/released iOS app; currently installed phone181 is a local developer build, not production.
+
+APP STORE CONNECT
+PASS — macOS and iOS/iPadOS 1.0.2 (181) uploaded, processed, selected, drafts saved.
+BLOCKED — BOTH builds show Missing Compliance / Documents In Review. Existing French encryption document awaits Apple's decision.
+PASS — neither app added/submitted for review, released or published. Manual release selected.
+
+GITHUB
+PASS — existing repository reeeeza/RayLink, isolated branch v2s/apple-1.0.2-181, commit 9da99023e41f815dc5b430d1f183911c005189eb. Remote SHA readback matches. Public source under V2SApple; existing original dirty checkout/index preserved. Binary dependencies/archives and secrets excluded.
+
+BACKUP
+PASS — encrypted Restic snapshot 6f335e298a113e800828abf8fe4ac67638a2dfe94764b5158f80b38ca2d7d9e1 in existing Google Drive Development-Backups/restic-source-production. Covers selected Apple source/project/tests, bundled engines, release archives, exported packages and milestone report.
+PASS — encrypted snapshot independently listed and downloaded via Google Drive connector; SHA-256 matches its Restic snapshot name.
+PASS — six source/project/export files restored through the synced Drive repository and verified by Restic. Both exported package hashes match originals. Full independent cloud-only restore of all packs not performed.
+
+REMAINING
+User authorized one-month-free production redemption on the regular account. Production monthly completion and yearly redemption, Premium activation/persistence/restoration and expiry/renewal acceptance remain unverified. Must not label project complete until those pass. Apple compliance decision remains external blocker. iPad physical-device runtime and clean reinstall disposable-device tests remain unperformed. Exact post-uninstall cleanup cannot run after Apple terminates/removes an app; explicit deletion and next-launch safeguards are implemented.
