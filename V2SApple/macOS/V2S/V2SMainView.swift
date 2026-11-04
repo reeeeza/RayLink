@@ -28,6 +28,7 @@ struct V2SMainView: View {
     @State private var showingImport = false
     @State private var showingSubscriptionPlans = false
     @State private var showingOfferCodeRedemption = false
+    @State private var showingProductionRedemptionHelp = false
     @State private var redemptionError: String?
     @State private var showingSharingGuide = false
     @State private var showingDiscoveryConsent = false
@@ -54,12 +55,11 @@ struct V2SMainView: View {
     var body: some View {
         if #available(macOS 27.0, *) {
             rootContent.offerCodeRedemption(options: [], isPresented: $showingOfferCodeRedemption) { result in
-                if case .success = result {
+                if case .success(let transaction) = result {
                     redemptionError = nil
-                    Task { await premium.refreshEntitlement() }
+                    Task { await premium.refreshEntitlement(redeemedTransaction: transaction) }
                 } else if case .failure(let error) = result {
-                    if case .userCancelled = error as? StoreKitError { return }
-                    redemptionError = "Apple could not complete redemption. Use a V2S Premium subscription offer code; app-download promo codes must be redeemed in the App Store."
+                    redemptionError = V2SRedemptionFailure.message(for: error)
                 }
             }
         } else if #available(macOS 15.0, *) {
@@ -68,8 +68,7 @@ struct V2SMainView: View {
                     redemptionError = nil
                     Task { await premium.refreshEntitlement() }
                 } else if case .failure(let error) = result {
-                    if case .userCancelled = error as? StoreKitError { return }
-                    redemptionError = "Apple could not complete redemption. Use a V2S Premium subscription offer code; app-download promo codes must be redeemed in the App Store."
+                    redemptionError = V2SRedemptionFailure.message(for: error)
                 }
             }
         } else {
@@ -115,6 +114,14 @@ struct V2SMainView: View {
         }
         .sheet(isPresented: $showingSharingGuide) { V2SInternetSharingGuide(isConnected: vpn.status == .connected) }
         .sheet(isPresented: $showingSubscriptionPlans) { subscriptionPlansSheet }
+        .alert("Use the Mac App Store version for real offer codes", isPresented: $showingProductionRedemptionHelp) {
+            Button("Open V2S in Mac App Store") {
+                NSWorkspace.shared.open(URL(string: "https://apps.apple.com/app/id6815956749")!)
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This copy uses test purchases. A regular Apple Account does not switch it to production. Redeem your real offer in the Mac App Store version, using your purchasing account. Returning here cannot transfer a production subscription into this test environment.")
+        }
         .sheet(item: $editingProfile) { profile in
             V2SReplaceProfileView(profile: profile) { link, name in
                 model.replaceManualProfile(profile, with: link, name: name)
@@ -402,7 +409,11 @@ struct V2SMainView: View {
                 Button("Restore Purchases") { Task { await model.restorePremium() } }
                     .buttonStyle(.borderless).disabled(premium.isCheckingEntitlement)
                 if #available(macOS 15.0, *) {
-                    Button("Redeem offer code · کد اشتراک") { showingOfferCodeRedemption = true }
+                    Button("Redeem offer code · کد اشتراک") {
+                        redemptionError = nil
+                        if premium.installation.usesTestPurchases { showingProductionRedemptionHelp = true }
+                        else { showingOfferCodeRedemption = true }
+                    }
                         .buttonStyle(.borderless).disabled(premium.isCheckingEntitlement)
                 }
                 Link("Manage subscription", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
@@ -410,6 +421,10 @@ struct V2SMainView: View {
             }.font(.system(size: 13))
             Text("Redeem a V2S Premium Monthly or Yearly subscription offer code. Apple shows the free or discounted period and renewal terms before confirmation. App-download promo codes do not include Premium.")
                 .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            if premium.installation.usesTestPurchases {
+                Text("Test purchase environment — real offer codes require the Mac App Store version. Purchases and Restore in this copy use test entitlements.")
+                    .font(.caption).foregroundStyle(V2SPalette.warning).fixedSize(horizontal: false, vertical: true)
+            }
             if let redemptionError { Text(redemptionError).font(.caption).foregroundStyle(.orange) }
             Text("راهنمای فارسی: V2S یک کلاینت VPN و پروکسی برای VLESS، VMess، Trojan و Shadowsocks است. سرورهای Premium به اشتراک معتبر نیاز دارند. موقعیت‌های قابل انتخاب، از جمله ایران در صورت موجود بودن، در فهرست سرورها نمایش داده می‌شوند. اتصال به شبکه یا خدمات بانکی ایران به سرور، اینترنت و مقررات بانک بستگی دارد و تضمین نمی‌شود. کد پیشنهاد اشتراک را با «Redeem offer code» وارد کنید؛ مدت رایگان و شرایط تمدید را اپل نمایش می‌دهد.")
                 .font(.caption).foregroundStyle(.secondary)

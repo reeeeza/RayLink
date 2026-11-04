@@ -1,0 +1,35 @@
+V2S Mac redemption correction — November 3, 2026
+
+COMPLETED
+- Fixed the macOS 27 redemption callback: it previously discarded the VerificationResult<Transaction> returned by Apple's current API and only refreshed currentEntitlements. It now sends the returned transaction directly through the existing Apple-signature + live V2S-server verification + profile delivery + transaction.finish path. A delayed entitlement snapshot can no longer substitute for the returned redemption result.
+- Launch, foreground refresh and Restore now consider active verified unfinished transactions as well as current entitlements. Candidates are deduplicated, latest expiry first; a failed candidate does not hide another valid subscription. Failed delivery is not finished and can be retried without redeeming again.
+- Transaction updates use the serialized reconciliation path instead of racing concurrent snapshot checks. Rejected redemption revalidates an independently existing subscription. No local Premium flag, fabricated receipt, account allowlist or unconditional code acceptance was added.
+- Development/test installations identify their purchase environment. Redeem explains that a regular Apple Account cannot convert this build into a production Store build and offers the official Mac App Store page. Production builds retain Apple's native supported redemption sheet. Network, storefront and cancellation failures have distinct messages; Apple continues to validate individual codes and eligibility.
+- Existing monthly/yearly product IDs, pricing, server verification, privacy consent, expiry enforcement, free tier and settings are preserved. No code, receipt, transaction or credential is stored in this report.
+
+ACTUAL DIAGNOSIS AND LIMITS
+1. The installed starting app was native macOS (not Catalyst or an iPad app), universal arm64/x86_64, V2S 1.0.2 (181), ca.irisbuddy.v2s.macos, Apple Development signed, with get-task-allow and no Mac App Store receipt. This explains the current test/production mismatch. A regular account sign-in cannot turn a development binary into the production customer flow.
+2. Source inspection and the installed SDK confirm a distinct activation defect: the macOS 27 callback transaction was discarded. This is fixed, but a real production transaction has not yet exercised the correction.
+3. Earlier same-day production attempts on published build 169 stalled in Apple's confirmation window; see the preserved build-181 diagnostic record. The source fix is not proof that Apple's separate confirmation/authentication stall is resolved. The older production app was not reinstalled.
+
+DELIVERED
+- Corrected signed development app installed at /Applications/V2S.app: 1.0.2 (182), same bundle ID and team. Original installed 181 is preserved under checkpoints/redeem-20261103/Installed-181.app; the pre-edit source checkpoint is before-edit-source.tgz. No user data or entitlement was deleted.
+- Release archive and Mac App Store export: release/1.0.2-182/V2S.xcarchive and V2S.pkg. Prepared only; 182 has not been uploaded, submitted or released. Existing Mac and iOS build-181 submissions were left untouched.
+
+VERIFIED
+- Focused compiled production recovery-helper tests pass: unfinished recovery, duplicate delivery, latest plan ordering, valid fallback after a rejected candidate, verification-outage retry, cancellation, expiry, installation classification and cancellation/network/storefront error mapping. These are controlled tests, not live Apple code redemptions.
+- Existing lease/profile regression tests pass: expiry boundary, late response, revocation race, out-of-order renewal, profile identity/persistence, credential rotation and revocation isolation.
+- Signed Debug build, Release archive and App Store export succeeded. Installed app signature passes deep/strict validation. Final 182 launches; the test-environment notice and Redeem guard are visible. Monthly/yearly product loading and displayed prices were checked without buying. No sandbox code was redeemed.
+- Read-only live production App Store Server API authentication succeeds from the existing verification service. This is authentication evidence, not a verified production subscription or provisioning test. No server configuration was changed.
+- Mac App Store Settings shows the regular purchasing account signed in and Sandbox Account signed out. iCloud, account region and account settings were not changed.
+- Fresh App Store Connect checks: approved monthly product ca.irisbuddy.v2s.premium.monthly and yearly ca.irisbuddy.v2s.premium.yearly. Existing Apple-issued production one-time subscription offer batches 638412 (one month free) and 638395 (first year free), 500 codes each, expiry April 29, 2027. Both include new, existing and expired subscribers, allow eligible introductory-offer stacking, and auto-renew at the standard price. Offers list 174 storefronts; V2S app availability separately excludes France and China. No offer configuration was changed. These are subscription codes, not app-download or V2S membership codes. Individual code redemption status was not established; no additional production code was consumed.
+
+PRODUCTION ACCEPTANCE — STILL REQUIRED
+Starting state: Premium locked, no Premium server profiles. No new verified production entitlement, Premium connection, entitlement persistence after restart, or production Restore success is claimed. Invalid/expired/used/ineligible production-code UI cases are owned by Apple and have not been consumed/tested against a production copy in this pass.
+Exact next distribution step: authorize uploading 182 and replacing/resubmitting the pending Mac build 181, then obtain Apple's approval and authorized manual release. Install 182 through the Mac App Store using the same purchasing account. Complete one authorized production offer, including any Apple authentication/terms confirmation; verify returned transaction/server entitlement, a real Premium server connection, quit/reopen persistence, and user-driven Restore without redeeming again. Do not substitute TestFlight or development evidence for that customer-flow acceptance.
+
+REFERENCES
+Apple supported redemption callback and external-redemption recovery:
+https://developer.apple.com/documentation/storekit/supporting-offer-codes-in-your-app
+Apple offer eligibility and supported redemption routes:
+https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-subscription-offer-codes/

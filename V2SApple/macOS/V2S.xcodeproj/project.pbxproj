@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B18200000000000000000001 /* V2SPremiumRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18200000000000000000002 /* V2SPremiumRecovery.swift */; };
 		B15500000000000000000001 /* OpenSourceNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B15500000000000000000002 /* OpenSourceNotices.txt */; };
 		B15500000000000000000003 /* OpenSourceNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B15500000000000000000002 /* OpenSourceNotices.txt */; };
 		B15300000000000000000001 /* V2SPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15300000000000000000002 /* V2SPrivacy.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B18200000000000000000002 /* V2SPremiumRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPremiumRecovery.swift; sourceTree = "<group>"; };
 		B15500000000000000000002 /* OpenSourceNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = V2S/OpenSourceNotices.txt; sourceTree = SOURCE_ROOT; };
 		B15300000000000000000002 /* V2SPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPrivacy.swift; sourceTree = "<group>"; };
 		A00000000000000000000101 /* V2SApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SApp.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				A00000000000000000000105 /* MacVPNController.swift */,
 				A00000000000000000000106 /* V2SSubscriptionService.swift */,
 				A00000000000000000000411 /* V2SPremiumStore.swift */,
+				B18200000000000000000002 /* V2SPremiumRecovery.swift */,
 				A00000000000000000000107 /* Info.plist */,
 				A00000000000000000000108 /* V2S.entitlements */,
 				A00000000000000000000109 /* Assets.xcassets */,
@@ -308,6 +311,7 @@
 				A00000000000000000000505 /* MacVPNController.swift in Sources */,
 				A00000000000000000000506 /* V2SSubscriptionService.swift in Sources */,
 				A00000000000000000000529 /* V2SPremiumStore.swift in Sources */,
+				B18200000000000000000001 /* V2SPremiumRecovery.swift in Sources */,
 				A00000000000000000000507 /* V2SModels.swift in Sources */,
 				A00000000000000000000508 /* V2SXray.swift in Sources */,
 			);
@@ -371,7 +375,7 @@
 				COPY_PHASE_STRIP = NO;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 169;
+				CURRENT_PROJECT_VERSION = 182;
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -382,7 +386,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos;
 				PRODUCT_NAME = V2S;
 				SDKROOT = macosx;
@@ -399,7 +403,7 @@
 				COPY_PHASE_STRIP = NO;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 169;
+				CURRENT_PROJECT_VERSION = 182;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
@@ -411,7 +415,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos;
 				PRODUCT_NAME = V2S;
 				SDKROOT = macosx;
@@ -427,7 +431,7 @@
 				CODE_SIGN_ENTITLEMENTS = V2STunnel/V2STunnel.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 169;
+				CURRENT_PROJECT_VERSION = 182;
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -439,7 +443,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos.Tunnel;
 				PRODUCT_NAME = V2STunnel;
 				SDKROOT = macosx;
@@ -456,7 +460,7 @@
 				CODE_SIGN_ENTITLEMENTS = V2STunnel/V2STunnel.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 169;
+				CURRENT_PROJECT_VERSION = 182;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
@@ -469,7 +473,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos.Tunnel;
 				PRODUCT_NAME = V2STunnel;
 				SDKROOT = macosx;

@@ -9,6 +9,7 @@ final class V2SPremiumStore: ObservableObject {
     static let monthlyProductID = "ca.irisbuddy.v2s.premium.monthly"
     static let yearlyProductID = "ca.irisbuddy.v2s.premium.yearly"
     private static let productIDs = [monthlyProductID, yearlyProductID]
+    let installation = V2SPurchaseInstallation.current()
 
     @Published private(set) var products: [Product] = []
     @Published private(set) var isLoadingProducts = false
@@ -187,7 +188,7 @@ final class V2SPremiumStore: ObservableObject {
     /// Revalidates with the V2S service before premium profiles can be used.
     /// A device-side StoreKit entitlement on its own never grants server access.
     @discardableResult
-    func refreshEntitlement() async -> Bool {
+    func refreshEntitlement(redeemedTransaction: VerificationResult<Transaction>? = nil) async -> Bool {
         guard V2SPrivacyConsent.shared.accepted else { return false }
         // Serialize with background verification and Restore. Never return a
         // stale entitlement, or reject a valid subscriber merely because a
@@ -207,7 +208,25 @@ final class V2SPremiumStore: ObservableObject {
             isCheckingEntitlement = false
             if V2SPrivacyConsent.shared.permits(privacyTicket) { hasCheckedEntitlement = true }
         }
-        await refreshCurrentEntitlement(privacyTicket: privacyTicket)
+        if let redeemedTransaction {
+            // macOS 27 supplies the transaction in the redemption completion.
+            // Do not discard it and race a currentEntitlements snapshot which
+            // may still be empty. Delivery verifies Apple and the V2S service
+            // before publishing access and finishing the transaction.
+            do { try await deliver(redeemedTransaction) }
+            catch is CancellationError { return false }
+            catch {
+                // A rejected offer must not erase a separately valid existing
+                // subscription. Revalidate that access through the usual path.
+                await refreshCurrentEntitlement(privacyTicket: privacyTicket)
+                if !isEntitled {
+                    message = "V2S could not verify Premium access from this redemption. No new access was granted. Try Restore Purchases to retry verification."
+                }
+                return false
+            }
+        } else {
+            await refreshCurrentEntitlement(privacyTicket: privacyTicket)
+        }
         return isEntitled && (expirationDate.map { $0 > .now } ?? false)
     }
 
@@ -215,42 +234,54 @@ final class V2SPremiumStore: ObservableObject {
     // guard before entering this helper.
     private func refreshCurrentEntitlement(privacyTicket: UInt64?, restoring: Bool = false) async {
         guard V2SPrivacyConsent.shared.permits(privacyTicket) else { return }
-        var sawVerifiedTransaction = false
+        var candidates: [V2SPremiumCandidate<VerificationResult<Transaction>>] = []
         for await result in Transaction.currentEntitlements {
             guard V2SPrivacyConsent.shared.permits(privacyTicket) else { return }
-            guard case .verified(let transaction) = result,
-                  Self.productIDs.contains(transaction.productID),
-                  transaction.revocationDate == nil,
-                  let appleExpiry = transaction.expirationDate, appleExpiry > .now else { continue }
-            sawVerifiedTransaction = true
-            do {
-                try await deliver(.verified(transaction))
-                return
-            } catch is CancellationError {
-                return
-            } catch {
-                clearAccess(message: "Apple shows a subscription, but V2S could not verify server access. Try again later.")
-                return
-            }
+            if let candidate = activeCandidate(result) { candidates.append(candidate) }
+        }
+        // A redeemed transaction can remain unfinished if a previous launch or
+        // server verification was interrupted. Retry it, without redeeming or
+        // asking Apple to synchronize/authenticate on every launch.
+        for await result in Transaction.unfinished {
+            guard V2SPrivacyConsent.shared.permits(privacyTicket) else { return }
+            if let candidate = activeCandidate(result) { candidates.append(candidate) }
         }
         guard V2SPrivacyConsent.shared.permits(privacyTicket) else { return }
-        if !sawVerifiedTransaction {
-            clearAccess(message: restoring
+        do {
+            if try await V2SPremiumRecovery.deliverFirst(candidates, now: .now, deliver: { result in
+                try await self.deliver(result)
+            }) { return }
+        } catch is CancellationError { return }
+        catch {
+            clearAccess(message: "Apple shows a subscription, but V2S could not verify server access. Try Restore Purchases to retry verification.")
+            return
+        }
+        clearAccess(message: restoring
                 ? "No active V2S Premium subscription was found for this Apple Account. Check that this Mac uses the same purchase account and Store environment, then try Restore again."
                 : "Subscribe to unlock V2S Premium Servers.")
-            if products.isEmpty && !restoring {
-                message = "Monthly and yearly plans are not available in the App Store yet."
-            }
+        if products.isEmpty && !restoring {
+            message = "Monthly and yearly plans are not available in the App Store yet."
         }
+    }
+
+    private func activeCandidate(_ result: VerificationResult<Transaction>) -> V2SPremiumCandidate<VerificationResult<Transaction>>? {
+        guard case .verified(let transaction) = result,
+              Self.productIDs.contains(transaction.productID),
+              transaction.revocationDate == nil,
+              let expiry = transaction.expirationDate, expiry > .now else { return nil }
+        return V2SPremiumCandidate(id: transaction.id, expiresAt: expiry, value: result)
     }
 
     private func process(_ result: VerificationResult<Transaction>) async {
         guard V2SPrivacyConsent.shared.accepted else { return }
-        defer { hasCheckedEntitlement = true }
-        do { try await deliver(result) }
-        catch is CancellationError { }
-        catch {
-            clearAccess(message: "Apple updated your subscription, but V2S could not confirm server access. Try again later.")
+        if activeCandidate(result) != nil {
+            // Use the same serialized path as redemption and Restore, so a
+            // delayed snapshot cannot clear a concurrently delivered purchase.
+            await refreshEntitlement(redeemedTransaction: result)
+        } else {
+            // Revocation/expiry may refer to an old period after a renewal.
+            // Reconcile the account rather than overwriting the newer period.
+            await refreshEntitlement()
         }
     }
 
