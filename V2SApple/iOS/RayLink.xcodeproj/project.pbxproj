@@ -1,0 +1,898 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2519EB023045200200F0C304 /* RayLinkTunnel.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2519EAF73045200200F0C304 /* RayLinkTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2519EB2530454DD000F0C304 /* LibXray.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EB2430454DD000F0C304 /* LibXray.xcframework */; };
+		2519EB2630454E4E00F0C304 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EAF93045200200F0C304 /* NetworkExtension.framework */; };
+		2519EB36304675A600F0C304 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EB35304675A600F0C304 /* libresolv.tbd */; };
+		9A1000083049000000F0C304 /* V2TehMacTunnel.appex in Embed Mac Extensions */ = {isa = PBXBuildFile; fileRef = 9A1000023049000000F0C304 /* V2TehMacTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9A1000093049000000F0C304 /* LibXray.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EB2430454DD000F0C304 /* LibXray.xcframework */; };
+		9A10000A3049000000F0C304 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EAF93045200200F0C304 /* NetworkExtension.framework */; };
+		9A10000B3049000000F0C304 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EB35304675A600F0C304 /* libresolv.tbd */; };
+		BEEF00013049000000F0C304 /* LibXray.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EB2430454DD000F0C304 /* LibXray.xcframework */; };
+		BEEF00023049000000F0C304 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2519EB35304675A600F0C304 /* libresolv.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2519EB003045200200F0C304 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2519EADD30451E1900F0C304 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2519EAF63045200200F0C304;
+			remoteInfo = RayLinkTunnel;
+		};
+		9A10001D3049000000F0C304 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2519EADD30451E1900F0C304 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1000153049000000F0C304;
+			remoteInfo = V2TehMacTunnel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2519EB073045200200F0C304 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2519EB023045200200F0C304 /* RayLinkTunnel.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A10000D3049000000F0C304 /* Embed Mac Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9A1000083049000000F0C304 /* V2TehMacTunnel.appex in Embed Mac Extensions */,
+			);
+			name = "Embed Mac Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2519EAE530451E1900F0C304 /* RayLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2519EAF73045200200F0C304 /* RayLinkTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RayLinkTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2519EAF93045200200F0C304 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		2519EB2430454DD000F0C304 /* LibXray.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LibXray.xcframework; sourceTree = "<group>"; };
+		2519EB35304675A600F0C304 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		9A1000013049000000F0C304 /* V2S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2S.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1000023049000000F0C304 /* V2TehMacTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = V2TehMacTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2519EB033045200200F0C304 /* Exceptions for "RayLinkTunnel" folder in "RayLinkTunnel" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2519EAF63045200200F0C304 /* RayLinkTunnel */;
+		};
+		2519EB1830453AEC00F0C304 /* Exceptions for "RayLink" folder in "RayLinkTunnel" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppSettings.swift,
+				ProxyProfile.swift,
+				SharedConfiguration.swift,
+			);
+			target = 2519EAF63045200200F0C304 /* RayLinkTunnel */;
+		};
+		2519EB5030484A0000F0C304 /* Exceptions for "RayLink" folder in "RayLink" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2519EAE430451E1900F0C304 /* RayLink */;
+		};
+		9A1000043049000000F0C304 /* Exceptions for "V2TehMac" folder in "V2TehMac" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 9A1000143049000000F0C304 /* V2TehMac */;
+		};
+		9A1000053049000000F0C304 /* Exceptions for "RayLink" folder in "V2TehMac" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AccessViews.swift,
+				Assets.xcassets,
+				ContentView.swift,
+				ImportProfileView.swift,
+				Info.plist,
+				RayLinkApp.swift,
+				SettingsViews.swift,
+				VPNManager.swift,
+			);
+			target = 9A1000143049000000F0C304 /* V2TehMac */;
+		};
+		9A1000063049000000F0C304 /* Exceptions for "RayLinkTunnel" folder in "V2TehMacTunnel" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 9A1000153049000000F0C304 /* V2TehMacTunnel */;
+		};
+		9A1000073049000000F0C304 /* Exceptions for "RayLink" folder in "V2TehMacTunnel" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppSettings.swift,
+				ProxyProfile.swift,
+				SharedConfiguration.swift,
+			);
+			target = 9A1000153049000000F0C304 /* V2TehMacTunnel */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2519EAE730451E1900F0C304 /* RayLink */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2519EB5030484A0000F0C304 /* Exceptions for "RayLink" folder in "RayLink" target */,
+				2519EB1830453AEC00F0C304 /* Exceptions for "RayLink" folder in "RayLinkTunnel" target */,
+				9A1000053049000000F0C304 /* Exceptions for "RayLink" folder in "V2TehMac" target */,
+				9A1000073049000000F0C304 /* Exceptions for "RayLink" folder in "V2TehMacTunnel" target */,
+			);
+			path = RayLink;
+			sourceTree = "<group>";
+		};
+		2519EAFB3045200200F0C304 /* RayLinkTunnel */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2519EB033045200200F0C304 /* Exceptions for "RayLinkTunnel" folder in "RayLinkTunnel" target */,
+				9A1000063049000000F0C304 /* Exceptions for "RayLinkTunnel" folder in "V2TehMacTunnel" target */,
+			);
+			path = RayLinkTunnel;
+			sourceTree = "<group>";
+		};
+		9A1000033049000000F0C304 /* V2TehMac */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				9A1000043049000000F0C304 /* Exceptions for "V2TehMac" folder in "V2TehMac" target */,
+			);
+			path = V2TehMac;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2519EAE230451E1900F0C304 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2519EAF43045200200F0C304 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2519EB36304675A600F0C304 /* libresolv.tbd in Frameworks */,
+				2519EB2530454DD000F0C304 /* LibXray.xcframework in Frameworks */,
+				2519EB2630454E4E00F0C304 /* NetworkExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A10000E3049000000F0C304 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00013049000000F0C304 /* LibXray.xcframework in Frameworks */,
+				BEEF00023049000000F0C304 /* libresolv.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A10000F3049000000F0C304 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A10000B3049000000F0C304 /* libresolv.tbd in Frameworks */,
+				9A1000093049000000F0C304 /* LibXray.xcframework in Frameworks */,
+				9A10000A3049000000F0C304 /* NetworkExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2519EADC30451E1900F0C304 = {
+			isa = PBXGroup;
+			children = (
+				2519EAE730451E1900F0C304 /* RayLink */,
+				2519EAFB3045200200F0C304 /* RayLinkTunnel */,
+				9A1000033049000000F0C304 /* V2TehMac */,
+				2519EAF83045200200F0C304 /* Frameworks */,
+				2519EAE630451E1900F0C304 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2519EAE630451E1900F0C304 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2519EAE530451E1900F0C304 /* RayLink.app */,
+				2519EAF73045200200F0C304 /* RayLinkTunnel.appex */,
+				9A1000013049000000F0C304 /* V2S.app */,
+				9A1000023049000000F0C304 /* V2TehMacTunnel.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2519EAF83045200200F0C304 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2519EB35304675A600F0C304 /* libresolv.tbd */,
+				2519EAF93045200200F0C304 /* NetworkExtension.framework */,
+				2519EB2430454DD000F0C304 /* LibXray.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2519EAE430451E1900F0C304 /* RayLink */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2519EAF030451E1A00F0C304 /* Build configuration list for PBXNativeTarget "RayLink" */;
+			buildPhases = (
+				2519EAE130451E1900F0C304 /* Sources */,
+				2519EAE230451E1900F0C304 /* Frameworks */,
+				2519EAE330451E1900F0C304 /* Resources */,
+				2519EB073045200200F0C304 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2519EB013045200200F0C304 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2519EAE730451E1900F0C304 /* RayLink */,
+			);
+			name = RayLink;
+			packageProductDependencies = (
+			);
+			productName = RayLink;
+			productReference = 2519EAE530451E1900F0C304 /* RayLink.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2519EAF63045200200F0C304 /* RayLinkTunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2519EB043045200200F0C304 /* Build configuration list for PBXNativeTarget "RayLinkTunnel" */;
+			buildPhases = (
+				2519EAF33045200200F0C304 /* Sources */,
+				2519EAF43045200200F0C304 /* Frameworks */,
+				2519EAF53045200200F0C304 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2519EAFB3045200200F0C304 /* RayLinkTunnel */,
+			);
+			name = RayLinkTunnel;
+			packageProductDependencies = (
+			);
+			productName = RayLinkTunnel;
+			productReference = 2519EAF73045200200F0C304 /* RayLinkTunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		9A1000143049000000F0C304 /* V2TehMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A1000173049000000F0C304 /* Build configuration list for PBXNativeTarget "V2TehMac" */;
+			buildPhases = (
+				9A1000103049000000F0C304 /* Sources */,
+				9A10000E3049000000F0C304 /* Frameworks */,
+				9A1000123049000000F0C304 /* Resources */,
+				9A10000D3049000000F0C304 /* Embed Mac Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A1000163049000000F0C304 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2519EAE730451E1900F0C304 /* RayLink */,
+				9A1000033049000000F0C304 /* V2TehMac */,
+			);
+			name = V2TehMac;
+			packageProductDependencies = (
+			);
+			productName = V2S;
+			productReference = 9A1000013049000000F0C304 /* V2S.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9A1000153049000000F0C304 /* V2TehMacTunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A1000183049000000F0C304 /* Build configuration list for PBXNativeTarget "V2TehMacTunnel" */;
+			buildPhases = (
+				9A1000113049000000F0C304 /* Sources */,
+				9A10000F3049000000F0C304 /* Frameworks */,
+				9A1000133049000000F0C304 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2519EAFB3045200200F0C304 /* RayLinkTunnel */,
+			);
+			name = V2TehMacTunnel;
+			packageProductDependencies = (
+			);
+			productName = V2TehMacTunnel;
+			productReference = 9A1000023049000000F0C304 /* V2TehMacTunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2519EADD30451E1900F0C304 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					2519EAE430451E1900F0C304 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					2519EAF63045200200F0C304 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					9A1000143049000000F0C304 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					9A1000153049000000F0C304 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+				};
+			};
+			buildConfigurationList = 2519EAE030451E1900F0C304 /* Build configuration list for PBXProject "RayLink" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2519EADC30451E1900F0C304;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2519EAE630451E1900F0C304 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2519EAE430451E1900F0C304 /* RayLink */,
+				2519EAF63045200200F0C304 /* RayLinkTunnel */,
+				9A1000143049000000F0C304 /* V2TehMac */,
+				9A1000153049000000F0C304 /* V2TehMacTunnel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2519EAE330451E1900F0C304 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2519EAF53045200200F0C304 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A1000123049000000F0C304 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A1000133049000000F0C304 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2519EAE130451E1900F0C304 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2519EAF33045200200F0C304 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A1000103049000000F0C304 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A1000113049000000F0C304 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2519EB013045200200F0C304 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2519EAF63045200200F0C304 /* RayLinkTunnel */;
+			targetProxy = 2519EB003045200200F0C304 /* PBXContainerItemProxy */;
+		};
+		9A1000163049000000F0C304 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A1000153049000000F0C304 /* V2TehMacTunnel */;
+			targetProxy = 9A10001D3049000000F0C304 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2519EAEE30451E1A00F0C304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2519EAEF30451E1A00F0C304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2519EAF130451E1A00F0C304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RayLink/RayLinkDebug.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RayLink/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = V2S;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2519EAF230451E1A00F0C304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RayLink/RayLinkRelease.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RayLink/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = V2S;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2519EB053045200200F0C304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RayLinkTunnel/RayLinkTunnel.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RayLinkTunnel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "V2S Tunnel";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos.Tunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2519EB063045200200F0C304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RayLinkTunnel/RayLinkTunnel.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RayLinkTunnel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "V2S Tunnel";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos.Tunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9A1000193049000000F0C304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = V2TehMac/V2TehMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 133;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = V2TehMac/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = V2S;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.3.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rezaeskandari.V2TehMac;
+				PRODUCT_NAME = V2S;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9A10001A3049000000F0C304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = V2TehMac/V2TehMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 133;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = V2TehMac/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = V2S;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.3.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rezaeskandari.V2TehMac;
+				PRODUCT_NAME = V2S;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9A10001B3049000000F0C304 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = V2TehMac/V2TehMacTunnel.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 133;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RayLinkTunnel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "V2S Tunnel";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.3.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rezaeskandari.V2TehMac.Tunnel;
+				PRODUCT_NAME = V2TehMacTunnel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9A10001C3049000000F0C304 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = V2TehMac/V2TehMacTunnel.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 133;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RayLinkTunnel/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "V2S Tunnel";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.3.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rezaeskandari.V2TehMac.Tunnel;
+				PRODUCT_NAME = V2TehMacTunnel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2519EAE030451E1900F0C304 /* Build configuration list for PBXProject "RayLink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2519EAEE30451E1A00F0C304 /* Debug */,
+				2519EAEF30451E1A00F0C304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2519EAF030451E1A00F0C304 /* Build configuration list for PBXNativeTarget "RayLink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2519EAF130451E1A00F0C304 /* Debug */,
+				2519EAF230451E1A00F0C304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2519EB043045200200F0C304 /* Build configuration list for PBXNativeTarget "RayLinkTunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2519EB053045200200F0C304 /* Debug */,
+				2519EB063045200200F0C304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A1000173049000000F0C304 /* Build configuration list for PBXNativeTarget "V2TehMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A1000193049000000F0C304 /* Debug */,
+				9A10001A3049000000F0C304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A1000183049000000F0C304 /* Build configuration list for PBXNativeTarget "V2TehMacTunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A10001B3049000000F0C304 /* Debug */,
+				9A10001C3049000000F0C304 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2519EADD30451E1900F0C304 /* Project object */;
+}

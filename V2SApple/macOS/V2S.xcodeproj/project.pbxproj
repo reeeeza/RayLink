@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B15500000000000000000001 /* OpenSourceNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B15500000000000000000002 /* OpenSourceNotices.txt */; };
+		B15500000000000000000003 /* OpenSourceNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B15500000000000000000002 /* OpenSourceNotices.txt */; };
+		B15300000000000000000001 /* V2SPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15300000000000000000002 /* V2SPrivacy.swift */; };
+		A00000000000000000000501 /* V2SApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000101 /* V2SApp.swift */; };
+		A00000000000000000000502 /* V2SViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000102 /* V2SViewModel.swift */; };
+		A00000000000000000000503 /* V2SMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000103 /* V2SMainView.swift */; };
+		A00000000000000000000504 /* V2SSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000104 /* V2SSettingsView.swift */; };
+		A00000000000000000000505 /* MacVPNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000105 /* MacVPNController.swift */; };
+		A00000000000000000000506 /* V2SSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000106 /* V2SSubscriptionService.swift */; };
+		A00000000000000000000507 /* V2SModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000201 /* V2SModels.swift */; };
+		A00000000000000000000508 /* V2SXray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000202 /* V2SXray.swift */; };
+		A00000000000000000000509 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000109 /* Assets.xcassets */; };
+		A00000000000000000000510 /* LibXray.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000401 /* LibXray.xcframework */; };
+		A00000000000000000000511 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000402 /* AppKit.framework */; };
+		A00000000000000000000512 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000403 /* SwiftUI.framework */; };
+		A00000000000000000000513 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000404 /* NetworkExtension.framework */; };
+		A00000000000000000000514 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000405 /* Network.framework */; };
+		A00000000000000000000515 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000406 /* Security.framework */; };
+		A00000000000000000000516 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000407 /* libresolv.tbd */; };
+		A00000000000000000000517 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000408 /* Foundation.framework */; };
+		A00000000000000000000518 /* V2STunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000301 /* V2STunnelProvider.swift */; };
+		A00000000000000000000519 /* V2SPacketFlowBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000302 /* V2SPacketFlowBridge.swift */; };
+		A00000000000000000000520 /* V2SModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000201 /* V2SModels.swift */; };
+		A00000000000000000000521 /* V2SXray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000202 /* V2SXray.swift */; };
+		A00000000000000000000522 /* LibXray.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000401 /* LibXray.xcframework */; };
+		A00000000000000000000523 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000404 /* NetworkExtension.framework */; };
+		A00000000000000000000524 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000405 /* Network.framework */; };
+		A00000000000000000000525 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000406 /* Security.framework */; };
+		A00000000000000000000526 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000407 /* libresolv.tbd */; };
+		A00000000000000000000527 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00000000000000000000408 /* Foundation.framework */; };
+		A00000000000000000000528 /* V2STunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A00000000000000000000410 /* V2STunnel.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A00000000000000000000529 /* V2SPremiumStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000411 /* V2SPremiumStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A00000000000000000000702 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A00000000000000000000021;
+			remoteInfo = V2STunnel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A00000000000000000000604 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A00000000000000000000528 /* V2STunnel.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B15500000000000000000002 /* OpenSourceNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = V2S/OpenSourceNotices.txt; sourceTree = SOURCE_ROOT; };
+		B15300000000000000000002 /* V2SPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPrivacy.swift; sourceTree = "<group>"; };
+		A00000000000000000000101 /* V2SApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SApp.swift; sourceTree = "<group>"; };
+		A00000000000000000000102 /* V2SViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SViewModel.swift; sourceTree = "<group>"; };
+		A00000000000000000000103 /* V2SMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SMainView.swift; sourceTree = "<group>"; };
+		A00000000000000000000104 /* V2SSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SSettingsView.swift; sourceTree = "<group>"; };
+		A00000000000000000000105 /* MacVPNController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacVPNController.swift; sourceTree = "<group>"; };
+		A00000000000000000000106 /* V2SSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SSubscriptionService.swift; sourceTree = "<group>"; };
+		A00000000000000000000107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A00000000000000000000108 /* V2S.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = V2S.entitlements; sourceTree = "<group>"; };
+		A00000000000000000000109 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A00000000000000000000201 /* V2SModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SModels.swift; sourceTree = "<group>"; };
+		A00000000000000000000202 /* V2SXray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SXray.swift; sourceTree = "<group>"; };
+		A00000000000000000000301 /* V2STunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2STunnelProvider.swift; sourceTree = "<group>"; };
+		A00000000000000000000302 /* V2SPacketFlowBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPacketFlowBridge.swift; sourceTree = "<group>"; };
+		A00000000000000000000303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A00000000000000000000304 /* V2STunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = V2STunnel.entitlements; sourceTree = "<group>"; };
+		A00000000000000000000401 /* LibXray.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LibXray.xcframework; sourceTree = SOURCE_ROOT; };
+		A00000000000000000000402 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A00000000000000000000403 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A00000000000000000000404 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		A00000000000000000000405 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		A00000000000000000000406 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A00000000000000000000407 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		A00000000000000000000408 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A00000000000000000000409 /* V2S.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2S.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00000000000000000000410 /* V2STunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = V2STunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00000000000000000000411 /* V2SPremiumStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPremiumStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A00000000000000000000602 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000510 /* LibXray.xcframework in Frameworks */,
+				A00000000000000000000511 /* AppKit.framework in Frameworks */,
+				A00000000000000000000512 /* SwiftUI.framework in Frameworks */,
+				A00000000000000000000513 /* NetworkExtension.framework in Frameworks */,
+				A00000000000000000000514 /* Network.framework in Frameworks */,
+				A00000000000000000000515 /* Security.framework in Frameworks */,
+				A00000000000000000000516 /* libresolv.tbd in Frameworks */,
+				A00000000000000000000517 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00000000000000000000606 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000522 /* LibXray.xcframework in Frameworks */,
+				A00000000000000000000523 /* NetworkExtension.framework in Frameworks */,
+				A00000000000000000000524 /* Network.framework in Frameworks */,
+				A00000000000000000000525 /* Security.framework in Frameworks */,
+				A00000000000000000000526 /* libresolv.tbd in Frameworks */,
+				A00000000000000000000527 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000003 /* V2S */,
+				A00000000000000000000004 /* Shared */,
+				A00000000000000000000005 /* V2STunnel */,
+				A00000000000000000000006,
+				A00000000000000000000007 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000003 /* V2S */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000101 /* V2SApp.swift */,
+				B15300000000000000000002 /* V2SPrivacy.swift */,
+				A00000000000000000000102 /* V2SViewModel.swift */,
+				A00000000000000000000103 /* V2SMainView.swift */,
+				A00000000000000000000104 /* V2SSettingsView.swift */,
+				A00000000000000000000105 /* MacVPNController.swift */,
+				A00000000000000000000106 /* V2SSubscriptionService.swift */,
+				A00000000000000000000411 /* V2SPremiumStore.swift */,
+				A00000000000000000000107 /* Info.plist */,
+				A00000000000000000000108 /* V2S.entitlements */,
+				A00000000000000000000109 /* Assets.xcassets */,
+			);
+			path = V2S;
+			sourceTree = SOURCE_ROOT;
+		};
+		A00000000000000000000004 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000201 /* V2SModels.swift */,
+				A00000000000000000000202 /* V2SXray.swift */,
+			);
+			path = Shared;
+			sourceTree = SOURCE_ROOT;
+		};
+		A00000000000000000000005 /* V2STunnel */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000301 /* V2STunnelProvider.swift */,
+				A00000000000000000000302 /* V2SPacketFlowBridge.swift */,
+				A00000000000000000000303 /* Info.plist */,
+				A00000000000000000000304 /* V2STunnel.entitlements */,
+			);
+			path = V2STunnel;
+			sourceTree = SOURCE_ROOT;
+		};
+		A00000000000000000000006 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000401 /* LibXray.xcframework */,
+				A00000000000000000000402 /* AppKit.framework */,
+				A00000000000000000000403 /* SwiftUI.framework */,
+				A00000000000000000000404 /* NetworkExtension.framework */,
+				A00000000000000000000405 /* Network.framework */,
+				A00000000000000000000406 /* Security.framework */,
+				A00000000000000000000407 /* libresolv.tbd */,
+				A00000000000000000000408 /* Foundation.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000007 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000409 /* V2S.app */,
+				A00000000000000000000410 /* V2STunnel.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A00000000000000000000020 /* V2S */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000042 /* Build configuration list for PBXNativeTarget "V2S" */;
+			buildPhases = (
+				A00000000000000000000601 /* Sources */,
+				A00000000000000000000602 /* Frameworks */,
+				A00000000000000000000603 /* Resources */,
+				A00000000000000000000604 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A00000000000000000000701 /* PBXTargetDependency */,
+			);
+			name = V2S;
+			productName = V2S;
+			productReference = A00000000000000000000409 /* V2S.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A00000000000000000000021 /* V2STunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000043 /* Build configuration list for PBXNativeTarget "V2STunnel" */;
+			buildPhases = (
+				A00000000000000000000605 /* Sources */,
+				A00000000000000000000606 /* Frameworks */,
+				A00000000000000000000607 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = V2STunnel;
+			productName = V2STunnel;
+			productReference = A00000000000000000000410 /* V2STunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					A00000000000000000000020 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					A00000000000000000000021 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = A00000000000000000000040 /* Build configuration list for PBXProject "V2S" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A00000000000000000000002;
+			productRefGroup = A00000000000000000000007 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A00000000000000000000020 /* V2S */,
+				A00000000000000000000021 /* V2STunnel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A00000000000000000000603 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000509 /* Assets.xcassets in Resources */,
+				B15500000000000000000001 /* OpenSourceNotices.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00000000000000000000607 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B15500000000000000000003 /* OpenSourceNotices.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A00000000000000000000601 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000501 /* V2SApp.swift in Sources */,
+				B15300000000000000000001 /* V2SPrivacy.swift in Sources */,
+				A00000000000000000000502 /* V2SViewModel.swift in Sources */,
+				A00000000000000000000503 /* V2SMainView.swift in Sources */,
+				A00000000000000000000504 /* V2SSettingsView.swift in Sources */,
+				A00000000000000000000505 /* MacVPNController.swift in Sources */,
+				A00000000000000000000506 /* V2SSubscriptionService.swift in Sources */,
+				A00000000000000000000529 /* V2SPremiumStore.swift in Sources */,
+				A00000000000000000000507 /* V2SModels.swift in Sources */,
+				A00000000000000000000508 /* V2SXray.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00000000000000000000605 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A00000000000000000000518 /* V2STunnelProvider.swift in Sources */,
+				A00000000000000000000519 /* V2SPacketFlowBridge.swift in Sources */,
+				A00000000000000000000520 /* V2SModels.swift in Sources */,
+				A00000000000000000000521 /* V2SXray.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A00000000000000000000701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A00000000000000000000021 /* V2STunnel */;
+			targetProxy = A00000000000000000000702 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A00000000000000000000041 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
+				CLANG_ENABLE_MODULES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A00000000000000000000044 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
+				CLANG_ENABLE_MODULES = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A00000000000000000000045 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = V2S/V2S.entitlements;
+				COPY_PHASE_STRIP = NO;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 169;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = V2S/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos;
+				PRODUCT_NAME = V2S;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A00000000000000000000046 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = V2S/V2S.entitlements;
+				COPY_PHASE_STRIP = NO;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 169;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = V2S/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos;
+				PRODUCT_NAME = V2S;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A00000000000000000000047 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = V2STunnel/V2STunnel.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 169;
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = V2STunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos.Tunnel;
+				PRODUCT_NAME = V2STunnel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A00000000000000000000048 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = V2STunnel/V2STunnel.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 169;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4GL535W92X;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = V2STunnel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.irisbuddy.v2s.macos.Tunnel;
+				PRODUCT_NAME = V2STunnel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00000000000000000000040 /* Build configuration list for PBXProject "V2S" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000041 /* Debug */,
+				A00000000000000000000044 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000042 /* Build configuration list for PBXNativeTarget "V2S" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000045 /* Debug */,
+				A00000000000000000000046 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000043 /* Build configuration list for PBXNativeTarget "V2STunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000047 /* Debug */,
+				A00000000000000000000048 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000001 /* Project object */;
+}
