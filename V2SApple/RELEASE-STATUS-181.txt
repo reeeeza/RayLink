@@ -1,40 +1,19 @@
-V2S 1.0.2 (181) — CURRENT REPORT — 2026-11-03
+V2S 1.0.2 (181) — POST-RESTART STATUS — November 3, 2026
 
-COMPLETED CHANGES
-Native Apple redemption entry and clear subscription-code guidance. Foreground entitlement refresh. iOS race-safe expiry leases and premium-disconnection handling. Mac access now capped by both Apple and server expiry. Stable iOS premium profile identity. Privacy-gated entitlement checks. Local-data deletion and first-launch reinstall safeguards. Mac version label. Persian Premium guidance and English/Persian store descriptions and keywords. Android excluded.
+PASS — Current development build 1.0.2 (181) installed at /Applications/V2S.app and opened. Sidebar version verified. Rebuilt from unchanged current source because the prior temporary Debug build was removed by restart. No new release archive or upload was needed.
+PASS — Connected i16PM / iPhone 16 Pro Max already has V2S version 1.0.2, bundle build 181. Verified with devicectl and opened on the physical phone.
+PASS — Older Device Hub process from Xcode 27.1 RC closed. Only current Xcode 27.2 Device Hub is running; its Window menu contained one i16PM device window. Current Device Hub registered; macOS default application lookup returns /Applications/Xcode.app/Contents/Applications/DeviceHub.app.
+PASS — Free Apps and Paid Apps agreements both Active in Apple Business.
+PASS — Existing Apple encryption case 103004921217 located in authenticated support portal. Follow-up sent with both build 181 platforms and previously provided French dossier 34756832. Apple displayed Thanks for contacting us / We will review your message and get back to you. No new duplicate case or App Review submission created.
 
-VERIFIED
-PASS — macOS and iOS Release archives and signed App Store exports.
-PASS — macOS code-signature and Apple installer-signature checks.
-PASS — Apple validated and accepted both uploads; both builds processed and attached to version 1.0.2 drafts.
-PASS — new Mac debug181 runs, sidebar shows 1.0.2 (181). iPhone181 installed and launched preserving existing user profile.
-PASS — focused lease expiry/stale-response/revocation-race tests and Mac profile identity/persistence regressions. These are not real transaction acceptance tests.
-PASS — released Mac App Store V2S 1.0.1 (169) installed in /Applications with Mac App Store receipt, launched for production verification.
-PASS — sandbox Mac account signed out; regular App Store account preserved.
+PRODUCTION REDEMPTION
+The approved real monthly code is recognized directly in Mac App Store. After current build 181 replaced the public build, Apple offers Redeem & Install. This would download the currently published 1.0.1 (169) version. It was not selected, to preserve the user's requirement to use current build 181. The production code's completion/consumption and Premium activation remain unverified. No further sandbox redemption testing was performed.
 
-PRODUCTION OFFERS
-PASS — 500 monthly one-month-free and 500 yearly twelve-months-free production codes generated and downloaded. New, existing and expired subscribers eligible, subject to Apple account/storefront rules. 174 storefronts, France included, China excluded. Expire Apr 29, 2027 as shown by App Store Connect. Auto-renewal remains enabled. Existing USD2.99/month, USD19.99/year and localized CAD3.99/month, CAD24.99/year preserved.
-Code files remain private in Downloads/V2S-Production-Subscription-Codes-20261103; not committed or included in public backups.
-
-REAL REDEMPTION STATUS
-PASS — real production monthly code recognized inside released Mac App Store V2S, with the regular Apple Account. Apple displays 3-day introductory trial followed by one-month free offer, then $2.99/month beginning Dec 6, 2026. User authorized redemption.
-BLOCKED — Apple production confirmation renders terms but no usable confirmation control. No completed transaction or Premium activation claimed. The same missing-control stall was reproduced directly in the Mac App Store, outside V2S. App Store restart and one final direct attempt are in progress.
-Diagnostic evidence: Apple purchase services log AMSErrorDomain code 4 response-data decoding errors and code 204 decoration failure. These are observed errors, not a proven root cause. System HTTP/SOCKS proxy flags are disabled. An existing Tailscale VPN was preserved.
-Sandbox testing stopped at user instruction. Initial monthly sandbox attempts failed; yearly sandbox recognized one-year-free terms but Apple confirmation stalled without usable confirmation controls. No successful sandbox transaction or Premium activation is claimed.
-BLOCKED — real iOS production verification requires an approved/released iOS app; currently installed phone181 is a local developer build, not production.
-
-APP STORE CONNECT
-PASS — macOS and iOS/iPadOS 1.0.2 (181) uploaded, processed, selected, drafts saved.
-BLOCKED — BOTH builds show Missing Compliance / Documents In Review. Existing French encryption document awaits Apple's decision.
-PASS — neither app added/submitted for review, released or published. Manual release selected.
-
-GITHUB
-PASS — existing repository reeeeza/RayLink, isolated branch v2s/apple-1.0.2-181, commit 9da99023e41f815dc5b430d1f183911c005189eb. Remote SHA readback matches. Public source under V2SApple; existing original dirty checkout/index preserved. Binary dependencies/archives and secrets excluded.
-
-BACKUP
-PASS — encrypted Restic snapshot 6f335e298a113e800828abf8fe4ac67638a2dfe94764b5158f80b38ca2d7d9e1 in existing Google Drive Development-Backups/restic-source-production. Covers selected Apple source/project/tests, bundled engines, release archives, exported packages and milestone report.
-PASS — encrypted snapshot independently listed and downloaded via Google Drive connector; SHA-256 matches its Restic snapshot name.
-PASS — six source/project/export files restored through the synced Drive repository and verified by Restic. Both exported package hashes match originals. Full independent cloud-only restore of all packs not performed.
+APPLE RELEASE STATE
+Both macOS and iOS/iPadOS 1.0.2 (181) uploads processed and are selected in saved drafts. Mac draft freshly verified as Prepare for Submission, Missing Compliance / Documents In Review. Build 181 is not a production App Store release. Production testing against that exact version requires Apple approval and release. Standing instruction: do not submit, release or publish.
 
 REMAINING
-User authorized one-month-free production redemption on the regular account. Production monthly completion and yearly redemption, Premium activation/persistence/restoration and expiry/renewal acceptance remain unverified. Must not label project complete until those pass. Apple compliance decision remains external blocker. iPad physical-device runtime and clean reinstall disposable-device tests remain unperformed. Exact post-uninstall cleanup cannot run after Apple terminates/removes an app; explicit deletion and next-launch safeguards are implemented.
+Apple encryption review decision; production redemption completion and Premium activation/restoration/persistence; physical iPad and disposable clean-reinstall acceptance tests. No completion claim. Earlier reports document the previous published-build production confirmation stall and observed Apple purchase-service errors; a Mac restart has not yet been proven to resolve that earlier stall.
+
+SOURCE AND RELEASE RECOVERY
+Source commit 9da99023e41f815dc5b430d1f183911c005189eb in existing reeeeza/RayLink branch v2s/apple-1.0.2-181; prior report commit d501d70105f537adc45a2fd31d2dd74b87ef9487. Source is unchanged. Final Release exports remain V2S.pkg and RayLink.ipa in the corresponding release/1.0.2-181 directories. Prior encrypted Restic snapshot c8c339b92362d300e8c0c6678150d99db88beca54cedbecf106cde5eba82fb6b and recovery verification remain valid for source and exports.
