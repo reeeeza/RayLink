@@ -1,0 +1,10 @@
+2026-11-05: iOS 1.0.2 (184) uploaded, validated, attached and submitted. Apple confirmation: 1 Item Submitted.
+Submission ID: b4570b9f-f59c-4488-9d2b-70360f97f8de
+Build ID: e493cd73-0586-415c-8f02-76679822eebc
+Replaces withdrawn build 181. Manual release retained.
+Export: standard bundled encryption; France distribution No.
+Removed only 02_server_list and 04_premium_servers iPhone screenshots showing Iran entries. Five other iPhone screenshots retained; larger Dynamic Island display uses corrected inherited assets. iPad three screenshots retained. Existing previews retained.
+Persian VPN/proxy keywords retained; Iran and banking advertising removed from description and unconditional in-app paragraph.
+Archive/export/upload successful. Subscription lease tests passed: superseded response, expiry boundary, revocation race, bounded renewal.
+Production redemption, actual entitled Premium VPN connection, restart entitlement persistence and Restore remain unverified.
+Git mirror: see GITHUB-MILESTONE.txt. Source/IPA encrypted backup snapshot 44b642de.

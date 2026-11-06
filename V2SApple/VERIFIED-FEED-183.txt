@@ -1,0 +1,15 @@
+LIVE VERIFIED 2026-11-05:
+Mac 183 and iOS 184 use https://hostinger.v2teh.com/v2s/api/v1/apple/verify.
+Hostinger Apple catalog: base US, additional BG/NL/CA. IR and ir1/ir2 excluded from Apple entries and Apple credential snapshots. All node synchronization acknowledgements current. Personal imports independent and unrestricted.
+Six local catalog regression tests passed. Production and sandbox signed-transaction verification configured with three trust roots.
+No active Apple entitlement accounts at test time. Mac development build 183 Restore and monthly purchase stalled waiting on Apple. StoreKit logged AMSErrorDomain 204 / failed authentication headers. Sandbox account info@v2teh.com signed in by user; retry after app restart also stalled.
+Alternative TestFlight enabled: Mac 183 and iOS 184 in existing internal group. Testers mygroups@live.com and info@v2teh.com both Invited. Awaiting acceptance to install signed TestFlight Mac version and test feed in entitled app.
+Not verified: entitlement activation, actual Premium tunnel, restart entitlement persistence, Restore success. No entitlement bypass or fabricated server list used.
+
+FOLLOW-UP VERIFIED 2026-11-05:
+Accepted invitation via info@v2teh.com. Apple TestFlight Mac 1.0.2 (183) installed at /Applications/V2S 2.app with Apple receipt present; development copy preserved recoverably in Trash. Existing configurations unchanged.
+Apple test purchase sheet explicitly stated no charge; transaction completed. UI reports Yearly plan active, test expiry Nov 6 00:22 local. Server now has one active Apple entitlement.
+Actual authenticated live feed returned 8 entries: BG, CA, NL, US; VLESS and Trojan each. No IR entries. App UI displays the same eight profiles.
+Selected Canada VLESS; OS VPN status Connected. HTTPS egress request succeeded and matched selected Canada endpoint DNS address (IP not recorded).
+Quit/reopened app: Premium revalidated, eight profiles visible, Canada tunnel remained connected with elapsed timer. Restore Purchases completed and retained active entitlement and same list.
+These are TestFlight/sandbox results, not production redemption. iOS 184 endpoint matches; no physical-iOS activation/connection test performed this turn.
