@@ -65,9 +65,6 @@ struct V2SPremiumPlansView: View {
                 Section {
                     Text(AppStrings.value("Subscriptions renew automatically unless cancelled. Apple shows the final price, trial eligibility and renewal terms before you confirm. Manage or cancel in your Apple Account."))
                         .font(.footnote)
-                    Text("راهنمای فارسی: V2S یک کلاینت VPN و پروکسی برای VLESS، VMess، Trojan و Shadowsocks است. سرورهای Premium به اشتراک معتبر نیاز دارند. موقعیت‌های قابل انتخاب، از جمله ایران در صورت موجود بودن، در فهرست سرورها نمایش داده می‌شوند. اتصال به شبکه یا خدمات بانکی ایران به سرور، اینترنت و مقررات بانک بستگی دارد و تضمین نمی‌شود. کد پیشنهاد اشتراک را با «Redeem offer code» وارد کنید؛ مدت رایگان و شرایط تمدید را اپل نمایش می‌دهد.")
-                        .font(.footnote).foregroundStyle(.secondary)
-                        .environment(\.layoutDirection, .rightToLeft)
                     Link(destination: URL(string: "https://v2teh.com/v2s-ios-privacy.html")!) {
                         Text(AppStrings.value("Privacy Policy"))
                     }

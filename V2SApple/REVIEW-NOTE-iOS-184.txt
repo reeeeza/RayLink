@@ -1,0 +1,14 @@
+V2S 1.0.2 (184) replaces withdrawn iOS build 181. No app login is required.
+
+We have addressed the regional-service and banking marketing concerns: the English/Persian listing and the unconditional in-app Persian paragraph no longer advertise Iran or banking access. Screenshots showing Iran entries have been removed. The V2S-operated Apple Premium service excludes Iran locations; current locations are United States, Canada, Netherlands and Bulgaria, supplied dynamically after verification of an active Apple subscription. Users may import their own compatible configurations for free.
+
+Acknowledge the privacy disclosure, add a compatible VLESS, VMess, Trojan or Shadowsocks profile or HTTPS subscription, select a server and connect, approving the VPN configuration prompt. Public-server availability varies. Ping is endpoint reachability, not proof of VPN connectivity.
+
+Premium uses Monthly and Yearly auto-renewable Apple subscriptions. Purchase, Restore Purchases, Redeem offer code and Manage Subscription are available. The service validates Apple-signed transactions before supplying Premium profiles. Apple displays offer eligibility, localized price and renewal terms. App-download promo codes do not include Premium.
+
+Persian language support and relevant VPN/proxy search terms remain, without regional banking claims. The app uses NetworkExtension and a bundled Xray engine. France and China are excluded from distribution. Manual release is retained.
+
+We respectfully request review of these corrections and hope this revised version satisfies the applicable App Store requirements.
+
+Privacy: https://v2teh.com/v2s-ios-privacy.html
+Support: https://v2teh.com/contact.html
