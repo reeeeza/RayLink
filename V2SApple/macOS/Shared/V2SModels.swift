@@ -15,8 +15,34 @@ struct V2SProfile: Codable, Identifiable, Hashable {
     var communityCatalogVersion: Int? = nil
     var isCommunity: Bool?
     var isV2SOperated: Bool?
+    var city: String? = nil
     var countryCode: String?
     var isPremium: Bool? = nil
+}
+
+extension V2SProfile {
+    /// Presentation-only labels; never derive a city from an endpoint hostname.
+    func displayLocation(language: String? = nil) -> String {
+        let locale = Locale(identifier: language ?? "en")
+        let cleanName = Self.safeLocationLabel(name, endpoint: server)
+        let first = name.uppercased().split(whereSeparator: { !$0.isLetter }).first.map(String.init)
+        let aliases: [String: String] = ["CA":"CA","NL":"NL","TR":"TR","US":"US","USA":"US","BG":"BG","DE":"DE","GB":"GB","UK":"GB","FR":"FR","IR":"IR","SG":"SG","JP":"JP","AU":"AU"]
+        let code = countryCode?.uppercased() ?? first.flatMap { aliases[$0] }
+        let country = code.flatMap { locale.localizedString(forRegionCode: $0) }
+        let cleanCity = city.flatMap { Self.safeLocationLabel($0, endpoint: server) }
+        if let country { return [country, cleanCity].compactMap { $0 }.joined(separator: " · ") }
+        return cleanCity ?? cleanName ?? "Location not provided"
+    }
+
+    private static func safeLocationLabel(_ value: String, endpoint: String) -> String? {
+        let text = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty, text.count <= 100,
+              !text.lowercased().contains(endpoint.lowercased()),
+              !text.contains("://"), !text.contains("@"), !text.contains(":"),
+              text.range(of: #"(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}|\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b"#, options: .regularExpression) == nil,
+              !text.unicodeScalars.contains(where: { CharacterSet.controlCharacters.contains($0) }) else { return nil }
+        return text
+    }
 }
 
 struct V2SSubscription: Codable, Identifiable, Hashable {
@@ -121,6 +147,7 @@ enum V2SDNSPreset: String, Codable, CaseIterable, Identifiable {
 }
 
 struct V2SSettings: Codable, Equatable {
+    var languageCode: String? = nil
     var preferredIP: V2SIPPreference = .ipv4
     var dnsPreset: V2SDNSPreset = .cloudflareGoogle
     var customDNS = ""

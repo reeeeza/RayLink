@@ -77,20 +77,15 @@ struct V2SMainView: View {
     }
 
     private var rootContent: some View {
-        NavigationSplitView {
-            sidebar
-                .navigationSplitViewColumnWidth(min: 195, ideal: 220, max: 270)
-        } detail: {
-            VStack(spacing: 0) {
-                header
-                switch page {
-                case .servers: home
-                case .activity: V2SActivityView()
-                case .settings: V2SSettingsView(model: model)
-                }
+        VStack(spacing: 0) {
+            topNavigation
+            switch page {
+            case .servers: home
+            case .activity: V2SActivityView()
+            case .settings: V2SSettingsView(model: model)
             }
-            .background(V2SPalette.background)
         }
+        .background(V2SPalette.background)
         .font(.system(size: 14))
         .foregroundStyle(V2SPalette.text)
         .preferredColorScheme(.dark)
@@ -98,7 +93,7 @@ struct V2SMainView: View {
             Task { await premium.refreshEntitlement() }
         }
         .tint(V2SPalette.cyan)
-        .frame(minWidth: 1000, minHeight: 700)
+        .frame(minWidth: 900, minHeight: 620)
         .sheet(isPresented: $showingImport) {
             V2SImportView(
                 onImportInput: { input, name in
@@ -110,117 +105,106 @@ struct V2SMainView: View {
                         model.importText(input, name: name)
                     }
                 }
-            )
+            ).v2sSelectedLanguage()
         }
-        .sheet(isPresented: $showingSharingGuide) { V2SInternetSharingGuide(isConnected: vpn.status == .connected) }
-        .sheet(isPresented: $showingSubscriptionPlans) { subscriptionPlansSheet }
-        .alert("Use the Mac App Store version for real offer codes", isPresented: $showingProductionRedemptionHelp) {
-            Button("Open V2S in Mac App Store") {
+        .sheet(isPresented: $showingSharingGuide) { V2SInternetSharingGuide(isConnected: vpn.status == .connected).v2sSelectedLanguage() }
+        .sheet(isPresented: $showingSubscriptionPlans) { subscriptionPlansSheet.v2sSelectedLanguage() }
+        .alert(V2SLocalization.text("Use the Mac App Store version for real offer codes"), isPresented: $showingProductionRedemptionHelp) {
+            Button(V2SLocalization.text("Open V2S in Mac App Store")) {
                 NSWorkspace.shared.open(URL(string: "https://apps.apple.com/app/id6815956749")!)
             }
-            Button("Cancel", role: .cancel) { }
+            Button(V2SLocalization.text("Cancel"), role: .cancel) { }
         } message: {
-            Text("This copy uses test purchases. A regular Apple Account does not switch it to production. Redeem your real offer in the Mac App Store version, using your purchasing account. Returning here cannot transfer a production subscription into this test environment.")
+            Text(V2SLocalization.text("This copy uses test purchases. A regular Apple Account does not switch it to production. Redeem your real offer in the Mac App Store version, using your purchasing account. Returning here cannot transfer a production subscription into this test environment."))
         }
         .sheet(item: $editingProfile) { profile in
             V2SReplaceProfileView(profile: profile) { link, name in
                 model.replaceManualProfile(profile, with: link, name: name)
             } onCancel: {
                 editingProfile = nil
-            }
+            }.v2sSelectedLanguage()
         }
-        .confirmationDialog("Scan public servers?", isPresented: $showingDiscoveryConsent, titleVisibility: .visible) {
-            Button("Scan public servers") { model.scanCommunityServers() }
-            Button("Read privacy and public-server notice") { showingDiscoveryPolicy = true }
-            Button("Cancel", role: .cancel) { }
+        .confirmationDialog(V2SLocalization.text("Scan public servers?"), isPresented: $showingDiscoveryConsent, titleVisibility: .visible) {
+            Button(V2SLocalization.text("Scan public servers")) { model.scanCommunityServers() }
+            Button(V2SLocalization.text("Read privacy and public-server notice")) { showingDiscoveryPolicy = true }
+            Button(V2SLocalization.text("Cancel"), role: .cancel) { }
         } message: {
-            Text(V2SPublicServerNotice.text)
+            Text(V2SLocalization.text(V2SPublicServerNotice.text))
         }
         .sheet(isPresented: $showingDiscoveryPolicy) {
             VStack {
                 V2SPrivacyView(model: model)
-                Button("Done") { showingDiscoveryPolicy = false }.padding()
-            }.frame(width: 780, height: 720)
+                Button(V2SLocalization.text("Done")) { showingDiscoveryPolicy = false }.padding()
+            }.frame(width: 780, height: 720).v2sSelectedLanguage()
         }
-        .alert("V2S", isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.clearError() } })) {
-            Button("OK") { model.clearError() }
-        } message: { Text(model.errorMessage ?? "") }
+        .alert(V2SLocalization.text("V2S"), isPresented: Binding(get: { model.errorMessage != nil }, set: { if !$0 { model.clearError() } })) {
+            Button(V2SLocalization.text("OK")) { model.clearError() }
+        } message: { Text(V2SLocalization.text(model.errorMessage ?? "")) }
     }
 
-    private var sidebar: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 10) {
-                Image("V2SLogo").resizable().scaledToFit().frame(width: 40, height: 40)
-                VStack(alignment: .leading, spacing: 3) {
-                    Text("V2S").font(.system(size: 23, weight: .heavy, design: .rounded))
-                    Text("Version \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"))")
-                        .font(.caption).foregroundStyle(.secondary).textSelection(.enabled)
+    private func tr(_ text: String) -> String { V2SLocalization.text(text, language: model.settings.languageCode) }
+
+    private var topNavigation: some View {
+        HStack(spacing: 18) {
+            HStack(spacing: 8) {
+                Image("V2SLogo").resizable().scaledToFit().frame(width: 32, height: 32)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(V2SLocalization.text("V2S")).font(.system(size: 19, weight: .heavy, design: .rounded))
+                    Text(V2SLocalization.text("\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—") (\(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"))"))
+                        .font(.caption2).foregroundStyle(.secondary)
                 }
-                Spacer(minLength: 0)
             }
-            .padding(.horizontal, 16).padding(.vertical, 18)
-            Divider().overlay(.white.opacity(0.06))
-            VStack(spacing: 5) {
-                ForEach(Page.allCases) { item in
-                    Button { page = item } label: {
-                        HStack(spacing: 12) {
-                            Image(systemName: item.icon).frame(width: 20)
-                            Text(item.rawValue)
-                            Spacer()
-                        }
-                        .font(.system(size: 15, weight: page == item ? .semibold : .medium))
-                        .foregroundStyle(page == item ? V2SPalette.text : V2SPalette.secondaryText)
-                        .padding(.horizontal, 12).padding(.vertical, 11)
+            Spacer(minLength: 8)
+            ForEach(Page.allCases) { item in
+                Button { page = item } label: {
+                    Label(tr(item.rawValue), systemImage: item.icon)
+                        .font(.system(size: 14, weight: .semibold))
+                        .padding(.horizontal, 12).padding(.vertical, 9)
                         .background(page == item ? V2SPalette.raised : .clear, in: RoundedRectangle(cornerRadius: 9))
-                    }.buttonStyle(.plain)
                 }
-            }.padding(10)
-            Spacer()
+                .buttonStyle(.plain)
+                .accessibilityAddTraits(page == item ? .isSelected : [])
+            }
+            appActions
         }
+        .padding(.horizontal, 20).padding(.vertical, 10)
         .background(V2SPalette.panel)
     }
 
-    private var header: some View {
-        HStack(spacing: 12) {
-            Text(page.rawValue).font(.system(size: 23, weight: .semibold, design: .rounded))
-            Spacer()
+    private var appActions: some View {
             Menu {
-                Button("Add server or subscription", systemImage: "plus") { showingImport = true }
-                Button("Update all subscriptions", systemImage: "arrow.clockwise") {
+                Button(V2SLocalization.text("Add server or subscription"), systemImage: "plus") { showingImport = true }
+                Button(V2SLocalization.text("Update all subscriptions"), systemImage: "arrow.clockwise") {
                     Task { await model.refreshAllSubscriptions() }
                 }
                 .disabled(model.data.subscriptions.isEmpty || !vpn.canTestServers || model.isRefreshingSubscriptions)
-                Button(model.isPingingAll ? "Stop checking servers" : "Check all server responses", systemImage: "waveform.path.ecg") {
+                Button(tr(model.isPingingAll ? "Stop checking servers" : "Check all server responses"), systemImage: "waveform.path.ecg") {
                     if model.isPingingAll { model.cancelPingAll() }
                     else { model.testAll() }
                 }
                 .disabled(model.data.profiles.isEmpty || !vpn.canTestServers)
-                Button("Share connection", systemImage: "wifi.router") { showingSharingGuide = true }
-            } label: { Label("More", systemImage: "ellipsis.circle") }
+                Button(V2SLocalization.text("Share connection"), systemImage: "wifi.router") { showingSharingGuide = true }
+            } label: { Label(V2SLocalization.text("More"), systemImage: "ellipsis.circle") }
             .menuStyle(.borderlessButton)
             .fixedSize()
-        }
-        .padding(.horizontal, 22).padding(.vertical, 13)
-        .background(V2SPalette.background)
-        .overlay(alignment: .bottom) { Divider().overlay(.white.opacity(0.06)) }
     }
 
     private var serversContent: some View {
         VStack(alignment: .leading, spacing: 16) {
                 HStack {
-                    Text("Choose a source, select a server, then connect.")
+                    Text(tr("Choose a source, select a server, then connect."))
                         .font(.callout).foregroundStyle(V2SPalette.secondaryText)
                     Spacer()
 
                 }
-                Text("SERVER SOURCE")
+                Text(tr("SERVER SOURCE"))
                     .font(.system(size: 12, weight: .bold)).tracking(1.2)
                     .foregroundStyle(V2SPalette.secondaryText)
                 HStack(spacing: 10) {
                     ForEach(ServerSection.allCases) { section in
                         let selected = serverSection == section
                         Button { serverSection = section } label: {
-                            Label(section.rawValue, systemImage: section.icon)
+                            Label(tr(section.rawValue), systemImage: section.icon)
                                 .font(.system(size: 15, weight: .semibold))
                                 .frame(maxWidth: .infinity, minHeight: 52)
                                 .foregroundStyle(selected ? section.color : V2SPalette.secondaryText)
@@ -232,14 +216,14 @@ struct V2SMainView: View {
                     }
                 }
                 .accessibilityElement(children: .contain)
-                .accessibilityLabel("Server source")
+                .accessibilityLabel(V2SLocalization.text("Server source"))
                 switch serverSection {
                 case .added:
                     HStack {
-                        Text("Servers you added, including your subscriptions")
+                        Text(V2SLocalization.text("Servers you added, including your subscriptions"))
                             .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
                         Spacer()
-                        Button { showingImport = true } label: { Label("Add server", systemImage: "plus") }
+                        Button { showingImport = true } label: { Label(V2SLocalization.text("Add server"), systemImage: "plus") }
                     }
                     if !localProfiles.isEmpty { serverGroup("MY SERVERS", profiles: localProfiles, section: .added) }
                     ForEach(model.data.subscriptions) { source in
@@ -250,7 +234,7 @@ struct V2SMainView: View {
                                     if collapsedSubscriptionIDs.contains(source.id) { collapsedSubscriptionIDs.remove(source.id) }
                                     else { collapsedSubscriptionIDs.insert(source.id) }
                                 } label: {
-                                    Label("\(source.name) · \(profiles.count) servers", systemImage: collapsedSubscriptionIDs.contains(source.id) ? "chevron.right" : "chevron.down")
+                                    Label(V2SLocalization.text("\(source.name) · \(profiles.count) servers"), systemImage: collapsedSubscriptionIDs.contains(source.id) ? "chevron.right" : "chevron.down")
                                         .font(.headline).frame(maxWidth: .infinity, alignment: .leading)
                                 }
                                 .buttonStyle(.plain)
@@ -258,7 +242,7 @@ struct V2SMainView: View {
                             }
                             if !collapsedSubscriptionIDs.contains(source.id) {
                                 if profiles.isEmpty {
-                                    Text("No servers in this subscription yet.").foregroundStyle(V2SPalette.mutedText)
+                                    Text(V2SLocalization.text("No servers in this subscription yet.")).foregroundStyle(V2SPalette.mutedText)
                                 } else {
                                     ForEach(sortedProfiles(profiles)) { serverRow($0) }
                                 }
@@ -268,17 +252,17 @@ struct V2SMainView: View {
                         .background(V2SPalette.panel, in: RoundedRectangle(cornerRadius: 12))
                     }
                     if localProfiles.isEmpty && model.data.subscriptions.isEmpty {
-                        ContentUnavailableView("No added servers", systemImage: "server.rack", description: Text("Add a server link or subscription to get started."))
+                        ContentUnavailableView(V2SLocalization.text("No added servers"), systemImage: "server.rack", description: Text(V2SLocalization.text("Add a server link or subscription to get started.")))
                     }
                 case .free:
                     communityCard
                     if communityProfiles.isEmpty {
-                        ContentUnavailableView("No checked free servers", systemImage: "globe", description: Text("Scan to check approved candidates. Availability depends on the feed and your network."))
+                        ContentUnavailableView(V2SLocalization.text("No checked free servers"), systemImage: "globe", description: Text(V2SLocalization.text("Scan to check approved candidates. Availability depends on the feed and your network.")))
                     } else { serverGroup("SCANNED FREE SERVERS", profiles: communityProfiles, section: .free) }
                 case .premium:
                     premiumCard
                     if premiumProfiles.isEmpty {
-                        ContentUnavailableView("No Premium servers available", systemImage: "crown", description: Text(premium.isEntitled ? "Refresh your subscription or try again later." : "Subscribe or restore purchases to access Premium servers."))
+                        ContentUnavailableView(tr("No Premium servers available"), systemImage: "crown", description: Text(tr(premium.isEntitled ? "Refresh your subscription or try again later." : "Subscribe or restore purchases to access Premium servers.")))
                     } else { serverGroup("V2S PREMIUM SERVERS", profiles: premiumProfiles, section: .premium) }
                 }
         }
@@ -290,7 +274,7 @@ struct V2SMainView: View {
                 connectionCard
                 serversContent
                 if let selected = model.selectedProfile { selectedCard(selected) }
-                Text("A proxy response check measures a request through a server. It does not verify the VPN tunnel, server location, or overall privacy.")
+                Text(V2SLocalization.text("A proxy response check measures a request through a server. It does not verify the VPN tunnel, server location, or overall privacy."))
                     .font(.system(size: 13)).foregroundStyle(V2SPalette.mutedText).frame(maxWidth: .infinity, alignment: .center).padding(.top, 2)
             }
             .padding(22).frame(maxWidth: 1100).frame(maxWidth: .infinity)
@@ -306,10 +290,19 @@ struct V2SMainView: View {
                 Image(systemName: vpn.status == .connected ? "checkmark.shield.fill" : "shield.lefthalf.filled")
                     .font(.system(size: 23)).foregroundStyle(accent)
             }
-            HStack(spacing: 9) {
-                Circle().fill(statusColor).frame(width: 9, height: 9)
-                Text(statusTitle).font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundStyle(vpn.status == .connected ? V2SPalette.success : V2SPalette.text)
+            VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 9) {
+                    Circle().fill(statusColor).frame(width: 9, height: 9)
+                    Text(tr(statusTitle)).font(.system(size: 22, weight: .bold, design: .rounded))
+                        .foregroundStyle(vpn.status == .connected ? V2SPalette.success : V2SPalette.text)
+                }
+                if let started = vpn.connectedAt {
+                    TimelineView(.periodic(from: .now, by: 1)) { timeline in
+                        Text(tr("Connected time") + " · " + V2SConnectionDuration.format(since: started, now: timeline.date))
+                            .font(.system(size: 13, design: .monospaced)).monospacedDigit()
+                            .foregroundStyle(V2SPalette.secondaryText)
+                    }
+                }
             }
             Spacer()
             connectionActionButton
@@ -332,7 +325,7 @@ struct V2SMainView: View {
                 }
             } label: {
                 Label(
-                    vpn.status == .connected ? "Disconnect" : (isConnecting ? "Connecting…" : "Connect"),
+                    tr(vpn.status == .connected ? "Disconnect" : (isConnecting ? "Connecting…" : "Connect")),
                     systemImage: vpn.status == .connected ? "stop.fill" : "play.fill"
                 )
                 .font(.system(size: 14, weight: .semibold))
@@ -370,67 +363,70 @@ struct V2SMainView: View {
         return LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing)
     }
 
+    private var premiumStatusText: String {
+        if !premium.hasCheckedEntitlement { return tr("Checking your Apple subscription…") }
+        if premium.isEntitled, let expiry = premium.expirationDate {
+            let date = expiry.formatted(.dateTime.locale(Locale(identifier: model.settings.languageCode ?? "en")).year().month().day().hour().minute())
+            return tr("Premium access expires") + " · " + date
+        }
+        return tr(premium.message)
+    }
+
     private var premiumCard: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 14) {
             Image(systemName: "crown.fill").font(.system(size: 20)).foregroundStyle(V2SPalette.gold)
                 .frame(width: 42, height: 42).background(V2SPalette.gold.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
             VStack(alignment: .leading, spacing: 4) {
-                Text("V2S Premium Servers").font(.headline)
-                Text(!premium.hasCheckedEntitlement ? "Checking your Apple subscription…" : premium.message)
+                Text(tr("V2S Premium Servers")).font(.headline)
+                Text(tr(premiumStatusText))
                     .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText).lineLimit(2)
             }
             Spacer(minLength: 8)
             if premium.isEntitled {
-                Label("Active", systemImage: "checkmark.seal.fill").font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.cyan)
+                Label(tr("Active"), systemImage: "checkmark.seal.fill").font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.cyan)
             } else if premium.hasCheckedEntitlement {
-                Label("Subscription", systemImage: "lock.fill").font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.gold)
+                Label(tr("Subscription"), systemImage: "lock.fill").font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.gold)
             }
             }
             if premium.isEntitled {
                 HStack {
-                    Text(premium.activeProductID == V2SPremiumStore.monthlyProductID
+                    Text(tr(premium.activeProductID == V2SPremiumStore.monthlyProductID
                          ? "Monthly plan active. Premium servers are ready below."
                          : premium.activeProductID == V2SPremiumStore.yearlyProductID
                          ? "Yearly plan active. Premium servers are ready below."
-                         : "Premium servers are ready to select below.")
+                         : "Premium servers are ready to select below."))
                         .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
                     Spacer()
-                    Button("Change plan") { showingSubscriptionPlans = true }
+                    Button(tr("Change plan")) { showingSubscriptionPlans = true }
                         .buttonStyle(.borderless)
                 }
             } else if !premium.hasCheckedEntitlement || premium.isCheckingEntitlement {
-                ProgressView("Checking Premium access…").controlSize(.small)
+                ProgressView(tr("Checking Premium access…")).controlSize(.small)
             } else {
-                Button("View subscription plans") { showingSubscriptionPlans = true }
+                Button(tr("View subscription plans")) { showingSubscriptionPlans = true }
                     .buttonStyle(.borderedProminent).tint(V2SPalette.gold)
             }
             HStack(spacing: 14) {
-                Button("Restore Purchases") { Task { await model.restorePremium() } }
+                Button(tr("Restore Purchases")) { Task { await model.restorePremium() } }
                     .buttonStyle(.borderless).disabled(premium.isCheckingEntitlement)
                 if #available(macOS 15.0, *) {
-                    Button("Redeem offer code · کد اشتراک") {
+                    Button(tr("Redeem offer code")) {
                         redemptionError = nil
                         if premium.installation.usesTestPurchases { showingProductionRedemptionHelp = true }
                         else { showingOfferCodeRedemption = true }
                     }
                         .buttonStyle(.borderless).disabled(premium.isCheckingEntitlement)
                 }
-                Link("Manage subscription", destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
+                Link(tr("Manage subscription"), destination: URL(string: "https://apps.apple.com/account/subscriptions")!)
                     .font(.system(size: 13))
             }.font(.system(size: 13))
-            Text("Redeem a V2S Premium Monthly or Yearly subscription offer code. Apple shows the free or discounted period and renewal terms before confirmation. App-download promo codes do not include Premium.")
+            Text(tr("Redeem a V2S Premium Monthly or Yearly subscription offer code. Apple shows the free or discounted period and renewal terms before confirmation. App-download promo codes do not include Premium."))
                 .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-            if premium.installation.usesTestPurchases {
-                Text("Test purchase environment — real offer codes require the Mac App Store version. Purchases and Restore in this copy use test entitlements.")
-                    .font(.caption).foregroundStyle(V2SPalette.warning).fixedSize(horizontal: false, vertical: true)
-            }
-            if let redemptionError { Text(redemptionError).font(.caption).foregroundStyle(.orange) }
-            Text("راهنمای فارسی: V2S یک کلاینت VPN و پروکسی برای VLESS، VMess، Trojan و Shadowsocks است. سرورهای Premium به اشتراک معتبر نیاز دارند. موقعیت‌های قابل انتخاب، از جمله ایران در صورت موجود بودن، در فهرست سرورها نمایش داده می‌شوند. اتصال به شبکه یا خدمات بانکی ایران به سرور، اینترنت و مقررات بانک بستگی دارد و تضمین نمی‌شود. کد پیشنهاد اشتراک را با «Redeem offer code» وارد کنید؛ مدت رایگان و شرایط تمدید را اپل نمایش می‌دهد.")
-                .font(.caption).foregroundStyle(.secondary)
-                .environment(\.layoutDirection, .rightToLeft)
-                .fixedSize(horizontal: false, vertical: true)
+            if let redemptionError { Text(V2SLocalization.text(redemptionError)).font(.caption).foregroundStyle(.orange) }
+
         }
+        .environment(\.layoutDirection, ["fa", "ar"].contains(model.settings.languageCode ?? "en") ? .rightToLeft : .leftToRight)
         .padding(15).background(V2SPalette.panel, in: RoundedRectangle(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 16).stroke(V2SPalette.gold.opacity(0.28), lineWidth: 1))
     }
@@ -439,16 +435,16 @@ struct V2SMainView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 HStack {
-                    Text("V2S Premium Servers").font(.title2.bold())
+                    Text(tr("V2S Premium Servers")).font(.title2.bold())
                     Spacer()
-                    Button("Done") { showingSubscriptionPlans = false }
+                    Button(tr("Done")) { showingSubscriptionPlans = false }
                 }
-                Text("Choose a subscription to unlock V2S Premium Servers.")
+                Text(tr("Choose a subscription to unlock V2S Premium Servers."))
                     .foregroundStyle(V2SPalette.secondaryText)
                 if premium.isLoadingProducts || !premium.hasCheckedEntitlement {
-                    ProgressView("Loading Apple subscription plans…")
+                    ProgressView(tr("Loading Apple subscription plans…"))
                 } else if premium.products.isEmpty {
-                    Text("Subscription plans are unavailable right now. Please try again later.")
+                    Text(tr("Subscription plans are unavailable right now. Please try again later."))
                         .foregroundStyle(V2SPalette.secondaryText)
                 } else {
                     VStack(spacing: 10) {
@@ -464,13 +460,13 @@ struct V2SMainView: View {
                                 let isMonthly = product.id == V2SPremiumStore.monthlyProductID
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
-                                        Text(isMonthly ? "Monthly plan" : "Yearly plan").font(.headline)
+                                        Text(tr(isMonthly ? "Monthly plan" : "Yearly plan")).font(.headline)
                                         if let trial = premiumTrialDisclosure(for: product) {
                                             Text(trial).font(.system(size: 13))
                                         }
                                     }
                                     Spacer()
-                                    Text("\(product.displayPrice) / \(isMonthly ? "month" : "year")")
+                                    Text(V2SLocalization.text("\(product.displayPrice) / \(V2SLocalization.text(isMonthly ? "month" : "year"))"))
                                         .font(.system(size: 15, weight: .semibold).monospacedDigit())
                                 }
                                 .padding(14)
@@ -482,17 +478,17 @@ struct V2SMainView: View {
                         }
                     }
                     if premium.purchasingProductID != nil {
-                        ProgressView("Processing purchase…")
+                        ProgressView(tr("Processing purchase…"))
                         if let notice = premium.purchaseWaitMessage {
-                            Text(notice).font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
+                            Text(V2SLocalization.text(notice)).font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
                         }
                     }
-                    Text("Plans renew automatically at the displayed price until canceled. Manage or cancel through your Apple Account. Free trials and introductory offers are available only to eligible subscribers when shown on a plan.")
+                    Text(tr("Plans renew automatically at the displayed price until canceled. Manage or cancel through your Apple Account. Free trials and introductory offers are available only to eligible subscribers when shown on a plan."))
                         .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
                 }
                 HStack(spacing: 18) {
-                    Link("Privacy Policy", destination: URL(string: "https://v2teh.com/v2s-macos-privacy.html")!)
-                    Link("Terms of Use", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                    Link(tr("Privacy Policy"), destination: URL(string: "https://v2teh.com/v2s-macos-privacy.html")!)
+                    Link(tr("Terms of Use"), destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
                 }
                 .font(.system(size: 13, weight: .medium))
                 .foregroundStyle(V2SPalette.cyan)
@@ -516,8 +512,8 @@ struct V2SMainView: View {
         case .year: unit = period.value == 1 ? "year" : "years"
         @unknown default: return nil
         }
-        let duration = "\(period.value) \(unit)"
-        return "\(duration) free trial for eligible subscribers"
+        let duration = "\(period.value) \(V2SLocalization.text(unit))"
+        return V2SLocalization.text("\(duration) free trial for eligible subscribers")
     }
 
     private var communityCard: some View {
@@ -525,15 +521,15 @@ struct V2SMainView: View {
             Image(systemName: "globe.americas.fill").font(.system(size: 18)).foregroundStyle(V2SPalette.success)
                 .frame(width: 40, height: 40).background(V2SPalette.success.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
             VStack(alignment: .leading, spacing: 4) {
-                Text("Scan for Free Servers").font(.headline)
-                Text(model.communityScanProgress.isEmpty ? "Only approved candidates that pass a proxy check on this Mac are listed." : model.communityScanProgress)
+                Text(V2SLocalization.text("Scan for Free Servers")).font(.headline)
+                Text(V2SLocalization.text(model.communityScanProgress.isEmpty ? "Only approved candidates that pass a proxy check on this Mac are listed." : model.communityScanProgress))
                     .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText).lineLimit(2)
             }
             Spacer(minLength: 8)
             if model.isDiscoveringCommunity {
-                Button("Stop") { model.stopCommunityScan() }.buttonStyle(.bordered)
+                Button(V2SLocalization.text("Stop")) { model.stopCommunityScan() }.buttonStyle(.bordered)
             } else {
-                Button(model.settings.communityDiscoveryEnabled ? "Scan for Free Servers" : "Enable in Settings") {
+                Button(tr(model.settings.communityDiscoveryEnabled ? "Scan for Free Servers" : "Enable in Settings")) {
                     if model.settings.communityDiscoveryEnabled { showingDiscoveryConsent = true }
                     else { page = .settings }
                 }
@@ -548,12 +544,12 @@ struct V2SMainView: View {
         VStack(alignment: .leading, spacing: 15) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("SELECTED SERVER").font(.system(size: 12, weight: .bold)).tracking(1.5).foregroundStyle(V2SPalette.secondaryText)
-                    Text(profile.name).font(.title3.weight(.semibold))
-                    Text(verbatim: "\(profile.server):\(profile.port)").font(.system(.callout, design: .monospaced)).foregroundStyle(V2SPalette.secondaryText)
+                    Text(V2SLocalization.text("SELECTED SERVER")).font(.system(size: 12, weight: .bold)).tracking(1.5).foregroundStyle(V2SPalette.secondaryText)
+                    Text(profile.displayLocation(language: model.settings.languageCode)).font(.title3.weight(.semibold))
+                    Text(profile.protocolName.uppercased()).font(.callout).foregroundStyle(V2SPalette.secondaryText)
                 }
                 Spacer()
-                Label(isConnected(profile) ? "Connected" : "Not connected", systemImage: isConnected(profile) ? "checkmark.circle.fill" : "circle")
+                Label(tr(isConnected(profile) ? "Connected" : "Not connected"), systemImage: isConnected(profile) ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(isConnected(profile) ? V2SPalette.success : V2SPalette.secondaryText)
                 Text(profile.protocolName.uppercased()).font(.system(size: 13, weight: .bold)).padding(.horizontal, 10).padding(.vertical, 6)
@@ -562,8 +558,8 @@ struct V2SMainView: View {
             Divider().overlay(.white.opacity(0.07))
             HStack {
                 Label(
-                    profile.latencyMilliseconds.map { "\($0) ms proxy response" }
-                        ?? (profile.isCommunity == true ? "Not verified on this Mac" : "Not checked"),
+                    tr(profile.latencyMilliseconds.map { "\($0) ms proxy response" }
+                        ?? (profile.isCommunity == true ? "Not verified on this Mac" : "Not checked")),
                     systemImage: "waveform.path.ecg"
                 )
                 .font(.callout)
@@ -574,14 +570,14 @@ struct V2SMainView: View {
                 Spacer()
                 Button { model.test(profile) } label: {
                     if model.pinging.contains(profile.id) { ProgressView().controlSize(.small) }
-                    else { Label("Check", systemImage: "arrow.clockwise") }
+                    else { Label(V2SLocalization.text("Check"), systemImage: "arrow.clockwise") }
                 }
                 .disabled(!vpn.canTestServers || model.pinging.contains(profile.id) || model.isPingingAll)
-                Button { showingSharingGuide = true } label: { Label("Share", systemImage: "wifi.router") }.buttonStyle(.bordered)
+                Button { showingSharingGuide = true } label: { Label(V2SLocalization.text("Share"), systemImage: "wifi.router") }.buttonStyle(.bordered)
             }
             if let source = subscriptionSource(for: profile) {
                 HStack {
-                    Label("Subscription", systemImage: "arrow.triangle.2.circlepath")
+                    Label(V2SLocalization.text("Subscription"), systemImage: "arrow.triangle.2.circlepath")
                         .font(.callout).foregroundStyle(V2SPalette.secondaryText)
                     Spacer()
                     Text(source.name).font(.callout.weight(.medium))
@@ -591,20 +587,20 @@ struct V2SMainView: View {
                     subscriptionUsageView(usage)
                 } else {
                     HStack(alignment: .top) {
-                        Label("Provider allowance", systemImage: "gauge.with.dots.needle.33percent")
+                        Label(V2SLocalization.text("Provider allowance"), systemImage: "gauge.with.dots.needle.33percent")
                             .font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.secondaryText)
                         Spacer()
-                        Text("Not provided")
+                        Text(V2SLocalization.text("Not provided"))
                             .font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.secondaryText)
-                        Button("Update") { Task { await model.refresh(source) } }
+                        Button(V2SLocalization.text("Update")) { Task { await model.refresh(source) } }
                             .buttonStyle(.borderless)
                             .disabled(!vpn.canTestServers)
                     }
-                    .help("This subscription response did not include usage or allowance information.")
+                    .help(V2SLocalization.text("This subscription response did not include usage or allowance information."))
                 }
             }
             if profile.isCommunity == true {
-                Label("Public third-party server. Avoid sensitive traffic.", systemImage: "exclamationmark.triangle.fill")
+                Label(V2SLocalization.text("Public third-party server. Avoid sensitive traffic."), systemImage: "exclamationmark.triangle.fill")
                     .font(.system(size: 13)).foregroundStyle(V2SPalette.gold)
             }
         }
@@ -625,14 +621,14 @@ struct V2SMainView: View {
     private func subscriptionUsageView(_ usage: V2SSubscriptionUsage) -> some View {
         VStack(spacing: 9) {
             HStack {
-                Label("Provider allowance", systemImage: "gauge.with.dots.needle.33percent")
+                Label(V2SLocalization.text("Provider allowance"), systemImage: "gauge.with.dots.needle.33percent")
                     .font(.system(size: 13, weight: .semibold)).foregroundStyle(V2SPalette.secondaryText)
                 Spacer()
                 if let total = usage.totalBytes {
-                    Text("\(formattedBytes(usage.usedBytes)) / \(formattedBytes(total))")
+                    Text(V2SLocalization.text("\(formattedBytes(usage.usedBytes)) / \(formattedBytes(total))"))
                         .font(.system(size: 13, weight: .semibold))
                 } else {
-                    Text("\(formattedBytes(usage.usedBytes)) used")
+                    Text(V2SLocalization.text("\(formattedBytes(usage.usedBytes)) used"))
                         .font(.system(size: 13, weight: .semibold))
                 }
             }
@@ -646,9 +642,9 @@ struct V2SMainView: View {
                 .frame(height: 8)
                 if let remaining = usage.remainingBytes {
                     HStack {
-                        Text("\(formattedPercent(fraction)) used")
+                        Text(V2SLocalization.text("\(formattedPercent(fraction)) used"))
                         Spacer()
-                        Text("\(formattedBytes(remaining)) remaining")
+                        Text(V2SLocalization.text("\(formattedBytes(remaining)) remaining"))
                     }
                     .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
                 }
@@ -656,7 +652,7 @@ struct V2SMainView: View {
             if let expiryDate = usage.expiryDate {
                 HStack {
                     Spacer()
-                    Text("Expires \(expiryDate.formatted(date: .abbreviated, time: .omitted))")
+                    Text(V2SLocalization.text("Expires \(expiryDate.formatted(date: .abbreviated, time: .omitted))"))
                         .font(.system(size: 13)).foregroundStyle(expiryDate < Date() ? V2SPalette.error : V2SPalette.secondaryText)
                 }
             }
@@ -681,11 +677,11 @@ struct V2SMainView: View {
             HStack(spacing: 12) {
                 Image("V2SLogo").resizable().scaledToFit().frame(width: 45, height: 45)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Get started with V2S").font(.title3.bold())
-                    Text("Add a server profile, then test and connect.").font(.callout).foregroundStyle(V2SPalette.secondaryText)
+                    Text(V2SLocalization.text("Get started with V2S")).font(.title3.bold())
+                    Text(V2SLocalization.text("Add a server profile, then test and connect.")).font(.callout).foregroundStyle(V2SPalette.secondaryText)
                 }
                 Spacer()
-                Button { showingImport = true } label: { Label("Add server", systemImage: "plus") }
+                Button { showingImport = true } label: { Label(V2SLocalization.text("Add server"), systemImage: "plus") }
                     .buttonStyle(.borderedProminent).tint(V2SPalette.purple)
             }
             Divider().overlay(.white.opacity(0.07))
@@ -703,8 +699,8 @@ struct V2SMainView: View {
             Image(systemName: icon).font(.system(size: 14, weight: .semibold)).foregroundStyle(V2SPalette.cyan)
                 .frame(width: 31, height: 31).background(V2SPalette.cyan.opacity(0.1), in: RoundedRectangle(cornerRadius: 9))
             VStack(alignment: .leading, spacing: 4) {
-                Text("\(number) · \(title)").font(.subheadline.weight(.semibold))
-                Text(text).font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText).fixedSize(horizontal: false, vertical: true)
+                Text(V2SLocalization.text("\(number) · \(V2SLocalization.text(title))")).font(.subheadline.weight(.semibold))
+                Text(V2SLocalization.text(text)).font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText).fixedSize(horizontal: false, vertical: true)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -727,7 +723,7 @@ struct V2SMainView: View {
     private func serverGroup(_ title: String, profiles: [V2SProfile], section: ServerSection, opensConnectionDetail: Bool = false) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text(title).font(.system(size: 12, weight: .bold)).tracking(1).foregroundStyle(V2SPalette.secondaryText)
+                Text(V2SLocalization.text(title)).font(.system(size: 12, weight: .bold)).tracking(1).foregroundStyle(V2SPalette.secondaryText)
                 Spacer()
                 groupActions(profiles: profiles, source: nil, section: section)
             }.padding(.horizontal, 9)
@@ -736,35 +732,32 @@ struct V2SMainView: View {
     }
 
     private func groupActions(profiles: [V2SProfile], source: V2SSubscription?, section: ServerSection) -> some View {
-        Menu {
-            if let source {
-                Button("Update subscription", systemImage: "arrow.clockwise") { Task { await model.refresh(source) } }
-                    .disabled(!vpn.canTestServers || model.isRefreshingSubscriptions)
-            } else if section == .free {
-                Button("Scan free servers", systemImage: "arrow.clockwise") {
-                    if model.settings.communityDiscoveryEnabled { showingDiscoveryConsent = true }
-                    else { page = .settings }
-                }
-                    .disabled(!vpn.canTestServers || model.isDiscoveringCommunity)
-            } else if section == .premium {
-                Button("Update Premium access", systemImage: "arrow.clockwise") {
-                    Task { await premium.refreshEntitlement() }
-                }
-            } else {
-                Button("Add server", systemImage: "plus") { showingImport = true }
-            }
-            Button(model.isPingingAll ? "Stop checking group" : "Ping all in group", systemImage: "waveform.path.ecg") {
+        HStack(spacing: 12) {
+            Button {
                 if model.isPingingAll { model.cancelPingAll() }
                 else { model.test(profiles) }
+            } label: {
+                Image(systemName: model.isPingingAll ? "stop.circle" : "waveform.path.ecg")
             }
+            .help(tr(model.isPingingAll ? "Stop checking servers" : "Ping all servers"))
+            .accessibilityLabel(tr(model.isPingingAll ? "Stop checking servers" : "Ping all servers"))
             .disabled(profiles.isEmpty || !vpn.canTestServers || model.isDiscoveringCommunity)
-        } label: {
-            Label("Group actions", systemImage: "ellipsis.circle")
-                .font(.system(size: 13, weight: .semibold))
+            Button {
+                if let source { Task { await model.refresh(source) } }
+                else if section == .premium { Task { await premium.refreshEntitlement() } }
+                else if section == .free {
+                    if model.settings.communityDiscoveryEnabled { showingDiscoveryConsent = true }
+                    else { page = .settings }
+                } else { Task { await model.refreshAllSubscriptions() } }
+            } label: {
+                Image(systemName: "arrow.clockwise")
+            }
+            .help(tr("Update all servers"))
+            .accessibilityLabel(tr("Update all servers"))
+            .disabled(!vpn.canTestServers || model.isRefreshingSubscriptions || model.isDiscoveringCommunity || premium.isCheckingEntitlement)
         }
-        .menuStyle(.borderlessButton)
-        .fixedSize()
-        .accessibilityLabel("Actions for \(source?.name ?? section.rawValue)")
+        .font(.system(size: 16, weight: .semibold)).foregroundStyle(V2SPalette.cyan)
+        .buttonStyle(.borderless)
     }
 
     private func serverRow(_ profile: V2SProfile, opensConnectionDetail: Bool = false) -> some View {
@@ -776,18 +769,18 @@ struct V2SMainView: View {
                 Image(systemName: profile.isCommunity == true ? "globe" : "server.rack")
                     .font(.system(size: 17)).foregroundStyle(V2SPalette.cyan).frame(width: 21)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(profile.name).font(.system(size: 15, weight: .semibold)).lineLimit(2).fixedSize(horizontal: false, vertical: true)
-                    Text(profile.isPremium == true ? profile.protocolName.uppercased() : "\(profile.protocolName.uppercased()) · \(profile.server)")
+                    Text(profile.displayLocation(language: model.settings.languageCode)).font(.system(size: 15, weight: .semibold)).lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                    Text(profile.protocolName.uppercased())
                         .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText).lineLimit(2).fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer(minLength: 2)
                 if model.pinging.contains(profile.id) { ProgressView().controlSize(.mini) }
-                else if let ms = profile.latencyMilliseconds { Text("\(ms) ms").font(.system(size: 13, weight: .semibold, design: .rounded).monospacedDigit()).foregroundStyle(latencyColor(ms)) }
+                else if let ms = profile.latencyMilliseconds { Text(V2SLocalization.text("\(ms) ms")).font(.system(size: 13, weight: .semibold, design: .rounded).monospacedDigit()).foregroundStyle(latencyColor(ms)) }
                 else if profile.isCommunity == true {
-                    Text("Not checked")
+                    Text(V2SLocalization.text("Not checked"))
                         .font(.system(size: 12, weight: .medium))
                         .foregroundStyle(V2SPalette.gold)
-                        .help("This public server has not passed a proxy check on this Mac yet.")
+                        .help(V2SLocalization.text("This public server has not passed a proxy check on this Mac yet."))
                 }
                 Button { model.test(profile) } label: {
                     Image(systemName: "waveform.path.ecg")
@@ -797,8 +790,8 @@ struct V2SMainView: View {
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .help("Check this server's proxy response")
-                .accessibilityLabel("Ping server")
+                .help(V2SLocalization.text("Check this server's proxy response"))
+                .accessibilityLabel(V2SLocalization.text("Ping server"))
                 .disabled(!vpn.canTestServers || model.pinging.contains(profile.id))
             }
             .padding(.horizontal, 12).padding(.vertical, 12)
@@ -826,27 +819,27 @@ struct V2SMainView: View {
                 }
         )
         .contextMenu {
-            Button(isConnected(profile) ? "Disconnect from Server" : "Connect to Server") {
+            Button(tr(isConnected(profile) ? "Disconnect from Server" : "Connect to Server")) {
                 if opensConnectionDetail { page = .servers }
                 Task { await model.toggleConnection(profile: profile) }
             }
-            Button("Check proxy response") { model.test(profile) }.disabled(!vpn.canTestServers)
+            Button(V2SLocalization.text("Check proxy response")) { model.test(profile) }.disabled(!vpn.canTestServers)
             if let source = subscriptionSource(for: profile) {
-                Button("Update from subscription") { Task { await model.refresh(source) } }
+                Button(V2SLocalization.text("Update from subscription")) { Task { await model.refresh(source) } }
                     .disabled(!vpn.canTestServers)
             } else if profile.isCommunity == true {
-                Button("Refresh free-server scan") {
+                Button(V2SLocalization.text("Refresh free-server scan")) {
                     if model.settings.communityDiscoveryEnabled { showingDiscoveryConsent = true }
                     else { page = .settings }
                 }
             } else if profile.isPremium == true {
-                Button("Update Premium access") { Task { await premium.refreshEntitlement() } }
+                Button(V2SLocalization.text("Update Premium access")) { Task { await premium.refreshEntitlement() } }
             } else {
-                Button("Replace server link") { editingProfile = profile }
+                Button(V2SLocalization.text("Replace server link")) { editingProfile = profile }
                     .disabled(!vpn.canTestServers)
             }
-            Button("Copy server link") { model.copyServerLink(profile) }
-            Button("Remove server", role: .destructive) { model.delete(profile) }
+            Button(V2SLocalization.text("Copy server link")) { model.copyServerLink(profile) }
+            Button(V2SLocalization.text("Remove server"), role: .destructive) { model.delete(profile) }
         }
     }
 
@@ -889,20 +882,20 @@ private struct V2SReplaceProfileView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Update server").font(.title2.bold())
-            Text("Paste a replacement link for this manually added server. The current link stays saved until the new one is valid.")
+            Text(V2SLocalization.text("Update server")).font(.title2.bold())
+            Text(V2SLocalization.text("Paste a replacement link for this manually added server. The current link stays saved until the new one is valid."))
                 .foregroundStyle(V2SPalette.secondaryText)
-            TextField("Server name", text: $name)
-            SecureField("Replacement VLESS, Trojan, VMess, or Shadowsocks link", text: $link)
+            TextField(V2SLocalization.text("Server name"), text: $name)
+            SecureField(V2SLocalization.text("Replacement VLESS, Trojan, VMess, or Shadowsocks link"), text: $link)
                 .textContentType(.password)
             if updateFailed {
-                Text("The server could not be updated. Check the link and try again.")
+                Text(V2SLocalization.text("The server could not be updated. Check the link and try again."))
                     .foregroundStyle(V2SPalette.error)
             }
             HStack {
                 Spacer()
-                Button("Cancel", action: onCancel)
-                Button("Update server") {
+                Button(V2SLocalization.text("Cancel"), action: onCancel)
+                Button(V2SLocalization.text("Update server")) {
                     if onSave(link, name) { onCancel() }
                     else { updateFailed = true }
                 }
@@ -941,13 +934,13 @@ private struct V2SImportView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            HStack { Image("V2SLogo").resizable().scaledToFit().frame(width: 36, height: 36); Text("Add to V2S").font(.title2.bold()) }
-            Text("Paste a subscription link or server links. V2S detects the format automatically.")
+            HStack { Image("V2SLogo").resizable().scaledToFit().frame(width: 36, height: 36); Text(V2SLocalization.text("Add to V2S")).font(.title2.bold()) }
+            Text(V2SLocalization.text("Paste a subscription link or server links. V2S detects the format automatically."))
                 .font(.callout).foregroundStyle(V2SPalette.secondaryText)
             HStack {
-                TextField("Name (optional)", text: $name).textFieldStyle(.roundedBorder)
-                Button("Import from Mac…") { isImportingFile = true }
-                Button("Paste") {
+                TextField(V2SLocalization.text("Name (optional)"), text: $name).textFieldStyle(.roundedBorder)
+                Button(V2SLocalization.text("Import from Mac…")) { isImportingFile = true }
+                Button(V2SLocalization.text("Paste")) {
                     if let value = NSPasteboard.general.string(forType: .string) {
                         input = V2SXray.normalizedShareLinksText(value)
                     }
@@ -959,17 +952,17 @@ private struct V2SImportView: View {
             )).font(.system(.body, design: .monospaced)).frame(minHeight: 210)
                 .overlay(alignment: .topLeading) {
                     if input.isEmpty {
-                        Text("Paste an HTTPS subscription URL or one or more server links…")
+                        Text(V2SLocalization.text("Paste an HTTPS subscription URL or one or more server links…"))
                             .font(.system(.body, design: .monospaced)).foregroundStyle(V2SPalette.mutedText)
                             .padding(.horizontal, 6).padding(.vertical, 8).allowsHitTesting(false)
                     }
                 }
                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(.quaternary))
-            Label(detectionMessage, systemImage: isSubscription ? "arrow.triangle.2.circlepath" : "server.rack")
+            Label(V2SLocalization.text(detectionMessage), systemImage: isSubscription ? "arrow.triangle.2.circlepath" : "server.rack")
                 .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText).lineLimit(2)
-            Text("Subscription URLs are private account information and are kept out of activity logs.")
+            Text(V2SLocalization.text("Subscription URLs are private account information and are kept out of activity logs."))
                 .font(.system(size: 13)).foregroundStyle(V2SPalette.secondaryText)
-            HStack { Spacer(); Button("Cancel", role: .cancel) { dismiss() }; Button("Import") {
+            HStack { Spacer(); Button(V2SLocalization.text("Cancel"), role: .cancel) { dismiss() }; Button(V2SLocalization.text("Import")) {
                 onImportInput(trimmedInput, name)
                 dismiss()
             }.buttonStyle(.borderedProminent).disabled(trimmedInput.isEmpty) }
@@ -1010,13 +1003,13 @@ private struct V2SImportView: View {
                 }
             }
         }
-        .alert("V2S", isPresented: Binding(
+        .alert(V2SLocalization.text("V2S"), isPresented: Binding(
             get: { fileImportError != nil },
             set: { if !$0 { fileImportError = nil } }
         )) {
-            Button("OK") { fileImportError = nil }
+            Button(V2SLocalization.text("OK")) { fileImportError = nil }
         } message: {
-            Text(fileImportError ?? "")
+            Text(V2SLocalization.text(fileImportError ?? ""))
         }
     }
 }
@@ -1026,12 +1019,12 @@ private struct V2SActivityView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
-                VStack(alignment: .leading, spacing: 4) { Text("Activity").font(.title2.bold()); Text("Recent connection and server-list events. Profile links and URLs are redacted.").font(.callout).foregroundStyle(V2SPalette.secondaryText) }
+                VStack(alignment: .leading, spacing: 4) { Text(V2SLocalization.text("Activity")).font(.title2.bold()); Text(V2SLocalization.text("Recent connection and server-list events. Profile links and URLs are redacted.")).font(.callout).foregroundStyle(V2SPalette.secondaryText) }
                 Spacer()
-                Button("Clear") { log.clear() }.disabled(log.entries.isEmpty)
+                Button(V2SLocalization.text("Clear")) { log.clear() }.disabled(log.entries.isEmpty)
             }
             if log.entries.isEmpty {
-                ContentUnavailableView("No activity yet", systemImage: "text.page.slash", description: Text("Connection, import, refresh, and scan events will show here."))
+                ContentUnavailableView(V2SLocalization.text("No activity yet"), systemImage: "text.page.slash", description: Text(V2SLocalization.text("Connection, import, refresh, and scan events will show here.")))
             } else {
                 List(log.entries) { entry in
                     HStack(alignment: .top, spacing: 12) {
@@ -1054,16 +1047,16 @@ private struct V2SInternetSharingGuide: View {
             HStack(spacing: 13) {
                 Image(systemName: "wifi.router.fill").font(.system(size: 25)).foregroundStyle(V2SPalette.cyan)
                     .frame(width: 52, height: 52).background(V2SPalette.cyan.opacity(0.12), in: RoundedRectangle(cornerRadius: 15))
-                VStack(alignment: .leading, spacing: 3) { Text("Share V2S over Wi-Fi").font(.title2.bold()); Text("Use macOS Internet Sharing for nearby devices.").font(.callout).foregroundStyle(V2SPalette.secondaryText) }
+                VStack(alignment: .leading, spacing: 3) { Text(V2SLocalization.text("Share V2S over Wi-Fi")).font(.title2.bold()); Text(V2SLocalization.text("Use macOS Internet Sharing for nearby devices.")).font(.callout).foregroundStyle(V2SPalette.secondaryText) }
                 Spacer()
-                Button("Done") { dismiss() }.keyboardShortcut(.defaultAction)
+                Button(V2SLocalization.text("Done")) { dismiss() }.keyboardShortcut(.defaultAction)
             }
             if !isConnected {
-                Label("Connect V2S first", systemImage: "exclamationmark.circle.fill")
+                Label(V2SLocalization.text("Connect V2S first"), systemImage: "exclamationmark.circle.fill")
                     .font(.headline).padding(14).frame(maxWidth: .infinity, alignment: .leading)
                     .background(V2SPalette.gold.opacity(0.12), in: RoundedRectangle(cornerRadius: 12)).foregroundStyle(V2SPalette.gold)
             } else {
-                Label("V2S is connected", systemImage: "checkmark.circle.fill")
+                Label(V2SLocalization.text("V2S is connected"), systemImage: "checkmark.circle.fill")
                     .font(.headline).padding(14).frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color.green.opacity(0.12), in: RoundedRectangle(cornerRadius: 12)).foregroundStyle(.green)
             }
@@ -1073,23 +1066,32 @@ private struct V2SInternetSharingGuide: View {
                 instruction(3, "Choose the source and destination", "If V2S appears under “Share your connection from”, choose it. Select Wi-Fi as the destination, then configure the network name and password.")
                 instruction(4, "Secure and enable the hotspot", "Use WPA2/WPA3 with a strong password. Turn Internet Sharing on in System Settings when you are ready.")
             }.padding(18).background(V2SPalette.panel, in: RoundedRectangle(cornerRadius: 14))
-            Label("A wired, USB, or Thunderbolt upstream connection is preferable because Wi-Fi is used to broadcast the hotspot.", systemImage: "info.circle.fill")
+            Label(V2SLocalization.text("A wired, USB, or Thunderbolt upstream connection is preferable because Wi-Fi is used to broadcast the hotspot."), systemImage: "info.circle.fill")
                 .font(.callout).foregroundStyle(V2SPalette.secondaryText).fixedSize(horizontal: false, vertical: true)
-            Label("macOS may not list a Network Extension VPN as an Internet Sharing source. If V2S is absent from that menu, this Mac cannot share the V2S tunnel using the built-in hotspot feature. V2S will not change or enable system sharing for you.", systemImage: "exclamationmark.triangle.fill")
+            Label(V2SLocalization.text("macOS may not list a Network Extension VPN as an Internet Sharing source. If V2S is absent from that menu, this Mac cannot share the V2S tunnel using the built-in hotspot feature. V2S will not change or enable system sharing for you."), systemImage: "exclamationmark.triangle.fill")
                 .font(.callout).foregroundStyle(V2SPalette.gold).fixedSize(horizontal: false, vertical: true)
-            HStack { Spacer(); Button { openSharingSettings() } label: { Label("Open Sharing Settings", systemImage: "gearshape") }.buttonStyle(.borderedProminent) }
+            HStack { Spacer(); Button { openSharingSettings() } label: { Label(V2SLocalization.text("Open Sharing Settings"), systemImage: "gearshape") }.buttonStyle(.borderedProminent) }
         }
         .padding(24).frame(width: 720)
     }
 
     private func instruction(_ number: Int, _ title: String, _ detail: String) -> some View {
         HStack(alignment: .top, spacing: 12) {
-            Text("\(number)").font(.system(size: 13, weight: .bold)).foregroundStyle(.white).frame(width: 26, height: 26).background(V2SPalette.purple, in: Circle())
-            VStack(alignment: .leading, spacing: 3) { Text(title).font(.headline); Text(detail).font(.callout).foregroundStyle(V2SPalette.secondaryText).fixedSize(horizontal: false, vertical: true) }
+            Text(V2SLocalization.text("\(number)")).font(.system(size: 13, weight: .bold)).foregroundStyle(.white).frame(width: 26, height: 26).background(V2SPalette.purple, in: Circle())
+            VStack(alignment: .leading, spacing: 3) { Text(V2SLocalization.text(title)).font(.headline); Text(V2SLocalization.text(detail)).font(.callout).foregroundStyle(V2SPalette.secondaryText).fixedSize(horizontal: false, vertical: true) }
         }
     }
 
     private func openSharingSettings() {
         if let url = URL(string: "x-apple.systempreferences:com.apple.Sharing-Settings.extension") { NSWorkspace.shared.open(url) }
+    }
+}
+
+// macOS sheets may retain the process language instead of the window locale.
+// Keep both layout direction and labels on the app's selected language.
+extension View {
+    @MainActor func v2sSelectedLanguage() -> some View {
+        self.environment(\.locale, Locale(identifier: V2SLocalization.currentLanguage))
+            .environment(\.layoutDirection, V2SLocalization.isRightToLeft ? .rightToLeft : .leftToRight)
     }
 }

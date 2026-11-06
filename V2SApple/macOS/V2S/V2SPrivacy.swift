@@ -57,33 +57,43 @@ struct V2SPrivacyView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Label("Your privacy in V2S", systemImage: "hand.raised.fill")
+                if requiresConsent {
+                    Picker(V2SLocalization.text("Language"), selection: Binding(
+                        get: { model.settings.languageCode ?? "en" },
+                        set: { code in var settings = model.settings; settings.languageCode = code; model.updateSettings(settings) }
+                    )) {
+                        ForEach(V2SLocalization.languages, id: \.code) { language in
+                            Text(verbatim: language.name).tag(language.code)
+                        }
+                    }.frame(maxWidth: 360)
+                }
+                Label(V2SLocalization.text("Your privacy in V2S"), systemImage: "hand.raised.fill")
                     .font(.system(size: 26, weight: .bold))
-                Text("Before using network features or purchasing Premium, review how V2S handles your information.")
+                Text(V2SLocalization.text("Before using network features or purchasing Premium, review how V2S handles your information."))
                     .font(.title3).foregroundStyle(V2SPalette.secondaryText)
                 disclosure("VPN traffic", "V2S processes network traffic, destination addresses and DNS requests to connect through your chosen server. The operator can see connection metadata and traffic that is not separately encrypted. V2S operates its Premium service; imported and public servers have their own operators.")
                 disclosure("Profiles, subscriptions and checks", "Private server credentials and subscription links are kept in this Mac’s Keychain. Subscription providers receive refresh requests. Server checks contact selected endpoints, and proxy checks use Cloudflare or Google connectivity URLs. Optional public discovery contacts the V2S feed service; it does not upload your private profiles.")
                 disclosure("Optional public servers", V2SPublicServerNotice.text)
                 disclosure("Apple purchases", "Apple handles billing. V2S sends your Apple-signed transaction to its service to verify Premium access. The service retains a subscription identifier digest, account mapping, status and expiry, and the credentials needed to operate your Premium account. Service ingress may log request IP metadata.")
-                Text("V2S does not sell VPN data or use or disclose it to third parties for purposes other than providing the VPN service. V2S does not promise that independently operated servers keep no logs.")
+                Text(V2SLocalization.text("V2S does not sell VPN data or use or disclose it to third parties for purposes other than providing the VPN service. V2S does not promise that independently operated servers keep no logs."))
                     .fixedSize(horizontal: false, vertical: true)
-                DisclosureGroup("Read the full Mac privacy policy", isExpanded: $showingFullPolicy) {
-                    Text(V2SMacPrivacyPolicy.text).font(.system(size: 14))
+                DisclosureGroup(V2SLocalization.text("Read the full Mac privacy policy"), isExpanded: $showingFullPolicy) {
+                    Text(V2SLocalization.text(V2SMacPrivacyPolicy.text)).font(.system(size: 14))
                         .textSelection(.enabled).padding(.top, 12)
                 }
-                Link("Privacy questions and requests", destination: URL(string: "https://v2teh.com/contact.html")!)
+                Link(V2SLocalization.text("Privacy questions and requests"), destination: URL(string: "https://v2teh.com/contact.html")!)
                 if requiresConsent {
                     if let issue = model.privacyStopError {
-                        Text(issue).foregroundStyle(V2SPalette.error)
-                        Button("Retry stopping V2S") { model.withdrawPrivacyConsent() }
+                        Text(V2SLocalization.text(issue)).foregroundStyle(V2SPalette.error)
+                        Button(V2SLocalization.text("Retry stopping V2S")) { model.withdrawPrivacyConsent() }
                     }
-                    Text("You can withdraw consent in Settings. This stops V2S network features and disconnects its VPN. Requests already in progress may finish. Withdrawing does not cancel your Apple subscription or delete remote records.")
+                    Text(V2SLocalization.text("You can withdraw consent in Settings. This stops V2S network features and disconnects its VPN. Requests already in progress may finish. Withdrawing does not cancel your Apple subscription or delete remote records."))
                         .foregroundStyle(V2SPalette.secondaryText).fixedSize(horizontal: false, vertical: true)
                     HStack(spacing: 16) {
-                        Button("Decline and quit") { NSApplication.shared.terminate(nil) }
+                        Button(V2SLocalization.text("Decline and quit")) { NSApplication.shared.terminate(nil) }
                             .disabled(model.isChangingPrivacyConsent)
                         Spacer()
-                        Button(model.isChangingPrivacyConsent ? "Stopping V2S…" : "Agree and continue") {
+                        Button(V2SLocalization.text(model.isChangingPrivacyConsent ? "Stopping V2S…" : "Agree and continue")) {
                             model.acceptPrivacyConsent()
                         }
                         .buttonStyle(.borderedProminent).disabled(model.isChangingPrivacyConsent || model.privacyStopError != nil)
@@ -97,8 +107,8 @@ struct V2SPrivacyView: View {
     }
     private func disclosure(_ title: String, _ detail: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title).font(.headline).foregroundStyle(V2SPalette.cyan)
-            Text(detail).fixedSize(horizontal: false, vertical: true)
+            Text(V2SLocalization.text(title)).font(.headline).foregroundStyle(V2SPalette.cyan)
+            Text(V2SLocalization.text(detail)).fixedSize(horizontal: false, vertical: true)
         }
     }
 }

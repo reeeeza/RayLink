@@ -320,13 +320,13 @@ final class V2SPremiumStore: ObservableObject {
               !response.entries.isEmpty else { throw PremiumError.serverRejected }
 
         let accessExpiry = min(serverExpiry, appleExpiry)
-        let profiles = try response.entries.prefix(30).map { entry -> V2SProfile in
+        // The verified service supplies the available catalog. Location fields
+        // are presentation data, never a country restriction on user imports.
+        let profiles = try response.entries.prefix(100).map { entry -> V2SProfile in
             var profile = try V2SXray.makeProfile(from: entry.uri)
-            // The original Premium gateway is a verified US exit. Older service
-            // responses carry a protocol label; use the exit location in the list.
-            profile.name = profile.server == "hostinger.v2teh.com"
-                ? "United States"
-                : (entry.name.isEmpty ? "Premium server" : entry.name)
+            profile.name = entry.name.isEmpty ? "Premium server" : entry.name
+            profile.countryCode = entry.country_code?.uppercased()
+            profile.city = entry.city
             profile.isV2SOperated = true
             profile.isPremium = true
             return profile
@@ -367,7 +367,12 @@ private enum V2SPremiumAPI {
     private static let verificationURL = URL(string: "https://hostinger.v2teh.com/v2s/api/v1/apple/verify")!
     private struct Request: Encodable { let signedTransactionInfo: String }
     fileprivate struct Response: Decodable {
-        struct Entry: Decodable { let uri: String; let name: String }
+        struct Entry: Decodable {
+            let uri: String
+            let name: String
+            let country_code: String?
+            let city: String?
+        }
         let status: String
         let product_id: String
         let subscription_expires_at: Int64

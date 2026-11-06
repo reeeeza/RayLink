@@ -1,0 +1,247 @@
+{
+  "SERVER SOURCE": {
+    "fa": "منبع سرور",
+    "fr": "SOURCE DES SERVEURS"
+  },
+  "Choose a source, select a server, then connect.": {
+    "fa": "منبع و سرور را انتخاب کنید، سپس متصل شوید.",
+    "fr": "Choisissez une source et un serveur, puis connectez-vous."
+  },
+  "Monthly plan": {
+    "fa": "طرح ماهانه",
+    "fr": "Forfait mensuel"
+  },
+  "Yearly plan": {
+    "fa": "طرح سالانه",
+    "fr": "Forfait annuel"
+  },
+  "Servers": {
+    "fa": "سرورها",
+    "fr": "Serveurs"
+  },
+  "Activity & Logs": {
+    "fa": "فعالیت و گزارش‌ها",
+    "fr": "Activité et journaux"
+  },
+  "Settings": {
+    "fa": "تنظیمات",
+    "fr": "Réglages"
+  },
+  "Added servers": {
+    "fa": "سرورهای افزوده‌شده",
+    "fr": "Serveurs ajoutés"
+  },
+  "Free servers": {
+    "fa": "سرورهای رایگان",
+    "fr": "Serveurs gratuits"
+  },
+  "Premium servers": {
+    "fa": "سرورهای اشتراکی",
+    "fr": "Serveurs Premium"
+  },
+  "V2S Premium Servers": {
+    "fa": "سرورهای اشتراکی V2S",
+    "fr": "Serveurs Premium V2S"
+  },
+  "Active": {
+    "fa": "فعال",
+    "fr": "Actif"
+  },
+  "Subscription": {
+    "fa": "اشتراک",
+    "fr": "Abonnement"
+  },
+  "Checking your Apple subscription…": {
+    "fa": "در حال بررسی اشتراک اپل…",
+    "fr": "Vérification de votre abonnement Apple…"
+  },
+  "Subscribe to unlock V2S Premium Servers.": {
+    "fa": "برای دسترسی به سرورهای اشتراکی V2S مشترک شوید.",
+    "fr": "Abonnez-vous pour accéder aux serveurs Premium V2S."
+  },
+  "Choose a monthly or yearly plan to unlock V2S Premium Servers.": {
+    "fa": "برای دسترسی به سرورها، طرح ماهانه یا سالانه را انتخاب کنید.",
+    "fr": "Choisissez un forfait mensuel ou annuel pour accéder aux serveurs Premium V2S."
+  },
+  "Premium access expires": {
+    "fa": "پایان اعتبار دسترسی اشتراکی",
+    "fr": "Expiration de l’accès Premium"
+  },
+  "Monthly plan active. Premium servers are ready below.": {
+    "fa": "طرح ماهانه فعال است. سرورها در فهرست زیر قرار دارند.",
+    "fr": "Forfait mensuel actif. Les serveurs Premium sont disponibles ci-dessous."
+  },
+  "Yearly plan active. Premium servers are ready below.": {
+    "fa": "طرح سالانه فعال است. سرورها در فهرست زیر قرار دارند.",
+    "fr": "Forfait annuel actif. Les serveurs Premium sont disponibles ci-dessous."
+  },
+  "Premium servers are ready to select below.": {
+    "fa": "سرورها را از فهرست زیر انتخاب کنید.",
+    "fr": "Sélectionnez un serveur Premium ci-dessous."
+  },
+  "Change plan": {
+    "fa": "تغییر طرح",
+    "fr": "Changer de forfait"
+  },
+  "Checking Premium access…": {
+    "fa": "در حال بررسی دسترسی…",
+    "fr": "Vérification de l’accès Premium…"
+  },
+  "View subscription plans": {
+    "fa": "مشاهده طرح‌های اشتراک",
+    "fr": "Voir les abonnements"
+  },
+  "Restore Purchases": {
+    "fa": "بازیابی خریدها",
+    "fr": "Restaurer les achats"
+  },
+  "Redeem offer code": {
+    "fa": "استفاده از کد پیشنهاد اشتراک",
+    "fr": "Utiliser un code d’offre"
+  },
+  "Manage subscription": {
+    "fa": "مدیریت اشتراک",
+    "fr": "Gérer l’abonnement"
+  },
+  "Done": {
+    "fa": "تمام",
+    "fr": "Terminé"
+  },
+  "Choose a subscription to unlock V2S Premium Servers.": {
+    "fa": "برای استفاده از سرورهای اشتراکی V2S یک طرح انتخاب کنید.",
+    "fr": "Choisissez un abonnement pour accéder aux serveurs Premium V2S."
+  },
+  "Loading Apple subscription plans…": {
+    "fa": "در حال دریافت طرح‌های اشتراک اپل…",
+    "fr": "Chargement des abonnements Apple…"
+  },
+  "Subscription plans are unavailable right now. Please try again later.": {
+    "fa": "طرح‌های اشتراک اکنون در دسترس نیستند. بعداً دوباره تلاش کنید.",
+    "fr": "Les abonnements sont indisponibles. Réessayez plus tard."
+  },
+  "No Premium servers available": {
+    "fa": "سرور اشتراکی در دسترس نیست",
+    "fr": "Aucun serveur Premium disponible"
+  },
+  "Refresh your subscription or try again later.": {
+    "fa": "اشتراک را به‌روز کنید یا بعداً دوباره تلاش کنید.",
+    "fr": "Actualisez votre abonnement ou réessayez plus tard."
+  },
+  "Subscribe or restore purchases to access Premium servers.": {
+    "fa": "برای دسترسی به سرورها مشترک شوید یا خریدها را بازیابی کنید.",
+    "fr": "Abonnez-vous ou restaurez vos achats pour accéder aux serveurs Premium."
+  },
+  "Connected": {
+    "fa": "متصل",
+    "fr": "Connecté"
+  },
+  "Not connected": {
+    "fa": "متصل نیست",
+    "fr": "Non connecté"
+  },
+  "Connected time": {
+    "fa": "مدت اتصال",
+    "fr": "Durée de connexion"
+  },
+  "Connect": {
+    "fa": "اتصال",
+    "fr": "Connecter"
+  },
+  "Disconnect": {
+    "fa": "قطع اتصال",
+    "fr": "Déconnecter"
+  },
+  "Connecting…": {
+    "fa": "در حال اتصال…",
+    "fr": "Connexion…"
+  },
+  "Ping all servers": {
+    "fa": "بررسی پاسخ همه سرورها",
+    "fr": "Tester tous les serveurs"
+  },
+  "Stop checking servers": {
+    "fa": "توقف بررسی سرورها",
+    "fr": "Arrêter les tests"
+  },
+  "Update all servers": {
+    "fa": "به‌روزرسانی همه سرورها",
+    "fr": "Actualiser les serveurs"
+  },
+  "Redeem a V2S Premium Monthly or Yearly subscription offer code. Apple shows the free or discounted period and renewal terms before confirmation. App-download promo codes do not include Premium.": {
+    "fa": "کد پیشنهاد اشتراک ماهانه یا سالانه V2S را وارد کنید. اپل مدت رایگان یا تخفیف و شرایط تمدید را پیش از تأیید نمایش می‌دهد. کد دریافت برنامه شامل اشتراک نیست.",
+    "fr": "Utilisez un code d’offre mensuel ou annuel V2S. Apple affiche la période gratuite ou réduite et les conditions de renouvellement avant confirmation. Les codes de téléchargement de l’app n’incluent pas Premium."
+  },
+  "Test purchase environment — real offer codes require the Mac App Store version. Purchases and Restore in this copy use test entitlements.": {
+    "fa": "محیط آزمایشی خرید — کدهای واقعی به نسخه Mac App Store نیاز دارند. خرید و بازیابی در این نسخه آزمایشی است.",
+    "fr": "Environnement de test : les codes réels nécessitent la version Mac App Store. Les achats et restaurations de cette copie utilisent des droits de test."
+  },
+  "Plans renew automatically at the displayed price until canceled. Manage or cancel through your Apple Account. Free trials and introductory offers are available only to eligible subscribers when shown on a plan.": {
+    "fa": "طرح‌ها تا زمان لغو با قیمت نمایش‌داده‌شده خودکار تمدید می‌شوند. مدیریت یا لغو از طریق حساب اپل انجام می‌شود. دوره رایگان فقط برای مشترکان واجد شرایط و در صورت نمایش در طرح ارائه می‌شود.",
+    "fr": "Les forfaits se renouvellent automatiquement au prix affiché jusqu’à résiliation. Gérez-les dans votre compte Apple. Les essais et offres de lancement sont réservés aux abonnés éligibles lorsqu’ils sont affichés."
+  },
+  "Privacy Policy": {
+    "fa": "سیاست حریم خصوصی",
+    "fr": "Politique de confidentialité"
+  },
+  "Terms of Use": {
+    "fa": "شرایط استفاده",
+    "fr": "Conditions d’utilisation"
+  },
+  "PREMIUM": {
+    "fa": "اشتراک ویژه",
+    "ar": "الاشتراك المميز",
+    "zh-Hans": "高级服务",
+    "ru": "ПРЕМИУМ",
+    "es": "PRÉMIUM",
+    "pt": "PREMIUM",
+    "fr": "PREMIUM",
+    "de": "PREMIUM"
+  },
+  "On Demand": {
+    "fa": "اتصال برحسب نیاز",
+    "ar": "الاتصال عند الطلب"
+  },
+  "Multiplexing (Mux)": {
+    "fa": "چندجریانی (Mux)",
+    "ar": "تعدد الإرسال (Mux)"
+  },
+  "Allow invalid subscription certificates": {
+    "fa": "اجازه استفاده از گواهی نامعتبر برای دریافت اشتراک"
+  },
+  "Weakens HTTPS certificate checks for subscription downloads. Leave off unless your provider requires it.": {
+    "fa": "اعتبارسنجی گواهی HTTPS را هنگام دریافت اشتراک کاهش می‌دهد. این گزینه را خاموش نگه دارید، مگر اینکه ارائه‌دهنده شما آن را الزامی کرده باشد."
+  },
+  "Imported profiles and subscription credentials are stored in macOS Keychain. Activity messages redact proxy links and URLs.": {
+    "fa": "مشخصات سرورهای واردشده و اطلاعات ورود اشتراک در Keychain مک ذخیره می‌شوند. لینک‌های پروکسی و نشانی‌های وب از گزارش فعالیت حذف می‌شوند."
+  },
+  "Optional macOS traffic enforcement. Leave off if it prevents this Mac or other network services from connecting.": {
+    "fa": "اعمال محدودیت ترافیک در macOS اختیاری است. اگر مانع اتصال این مک یا دیگر سرویس‌های شبکه می‌شود، آن را خاموش نگه دارید."
+  },
+  "Import": {
+    "fa": "وارد کردن"
+  },
+  "Import from Mac…": {
+    "fa": "وارد کردن از مک…"
+  },
+  "Paste": {
+    "fa": "جای‌گذاری"
+  },
+  "Cancel": {
+    "fa": "لغو"
+  },
+  "Add server": {
+    "fa": "افزودن سرور"
+  },
+  "Check": {
+    "fa": "بررسی"
+  },
+  "Share": {
+    "fa": "اشتراک‌گذاری"
+  },
+  "Location not provided": {
+    "fa": "مکان مشخص نشده"
+  },
+  "Update": {
+    "fa": "به‌روزرسانی"
+  }
+}

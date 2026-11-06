@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B18300000000000000000003 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B18300000000000000000004 /* Localizable.xcstrings */; };
+		B18300000000000000000001 /* V2SPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18300000000000000000002 /* V2SPresentation.swift */; };
 		B18200000000000000000001 /* V2SPremiumRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18200000000000000000002 /* V2SPremiumRecovery.swift */; };
 		B15500000000000000000001 /* OpenSourceNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B15500000000000000000002 /* OpenSourceNotices.txt */; };
 		B15500000000000000000003 /* OpenSourceNotices.txt in Resources */ = {isa = PBXBuildFile; fileRef = B15500000000000000000002 /* OpenSourceNotices.txt */; };
@@ -67,6 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B18300000000000000000004 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B18300000000000000000002 /* V2SPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPresentation.swift; sourceTree = "<group>"; };
 		B18200000000000000000002 /* V2SPremiumRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPremiumRecovery.swift; sourceTree = "<group>"; };
 		B15500000000000000000002 /* OpenSourceNotices.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = V2S/OpenSourceNotices.txt; sourceTree = SOURCE_ROOT; };
 		B15300000000000000000002 /* V2SPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V2SPrivacy.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				A00000000000000000000106 /* V2SSubscriptionService.swift */,
 				A00000000000000000000411 /* V2SPremiumStore.swift */,
 				B18200000000000000000002 /* V2SPremiumRecovery.swift */,
+				B18300000000000000000002 /* V2SPresentation.swift */,
+				B18300000000000000000004 /* Localizable.xcstrings */,
 				A00000000000000000000107 /* Info.plist */,
 				A00000000000000000000108 /* V2S.entitlements */,
 				A00000000000000000000109 /* Assets.xcassets */,
@@ -264,6 +270,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				fa, ar, "zh-Hans", ru, es, pt, fr, de,
 				en,
 				Base,
 			);
@@ -285,6 +292,7 @@
 			files = (
 				A00000000000000000000509 /* Assets.xcassets in Resources */,
 				B15500000000000000000001 /* OpenSourceNotices.txt in Resources */,
+				B18300000000000000000003 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +320,7 @@
 				A00000000000000000000506 /* V2SSubscriptionService.swift in Sources */,
 				A00000000000000000000529 /* V2SPremiumStore.swift in Sources */,
 				B18200000000000000000001 /* V2SPremiumRecovery.swift in Sources */,
+				B18300000000000000000001 /* V2SPresentation.swift in Sources */,
 				A00000000000000000000507 /* V2SModels.swift in Sources */,
 				A00000000000000000000508 /* V2SXray.swift in Sources */,
 			);
@@ -375,7 +384,7 @@
 				COPY_PHASE_STRIP = NO;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 182;
+				CURRENT_PROJECT_VERSION = 183;
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -403,7 +412,7 @@
 				COPY_PHASE_STRIP = NO;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 182;
+				CURRENT_PROJECT_VERSION = 183;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
@@ -431,7 +440,7 @@
 				CODE_SIGN_ENTITLEMENTS = V2STunnel/V2STunnel.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 182;
+				CURRENT_PROJECT_VERSION = 183;
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -460,7 +469,7 @@
 				CODE_SIGN_ENTITLEMENTS = V2STunnel/V2STunnel.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 182;
+				CURRENT_PROJECT_VERSION = 183;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4GL535W92X;
 				ENABLE_APP_SANDBOX = YES;

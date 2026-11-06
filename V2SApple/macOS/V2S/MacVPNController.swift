@@ -9,6 +9,7 @@ final class MacVPNController: ObservableObject {
 
     @Published private(set) var status: NEVPNStatus = .invalid
     @Published private(set) var prepared = false
+    @Published private(set) var connectedAt: Date?
     private(set) var connectedProfileID: UUID?
     private var manager: NETunnelProviderManager?
 
@@ -37,6 +38,11 @@ final class MacVPNController: ObservableObject {
     private func updateStatus(_ newStatus: NEVPNStatus) {
         let oldStatus = status
         status = newStatus
+        if newStatus == .connected || newStatus == .reasserting {
+            connectedAt = manager?.connection.connectedDate ?? connectedAt ?? (newStatus == .connected ? .now : nil)
+        } else if newStatus == .disconnected || newStatus == .invalid || newStatus == .connecting {
+            connectedAt = nil
+        }
         guard oldStatus != status else { return }
         if status == .disconnected || status == .invalid {
             connectedProfileID = nil

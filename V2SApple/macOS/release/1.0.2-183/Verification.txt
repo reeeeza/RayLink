@@ -1,0 +1,9 @@
+PASS: Debug build; signed Release archive and App Store export 1.0.2 (183).
+PASS: nine compiled language bundles and complete matching resource keys.
+PASS: placeholder types and dynamic message formatting; Persian/Arabic RTL.
+PASS: nine-language UI navigation, Import, Free servers, Premium, plans, Activity and Privacy.
+PASS: Persian language persisted after app restart; English restored.
+PASS: presentation tests: timer boundaries, endpoint redaction, settings migration and unrestricted personal imports.
+PASS: six Premium feeder tests, including new location refresh without app update and Apple Iran service exclusion.
+NOT VERIFIED: production redemption, actual entitled Premium tunnel, restart/Restore of production subscription.
+NOT SUBMITTED: package remains local, App Store screenshots and metadata are draft only.

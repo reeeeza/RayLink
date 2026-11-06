@@ -1,0 +1,20 @@
+V2S macOS 1.0.2 (183) — prepared, NOT submitted
+
+COMPLETED
+Nine app interface languages: English, Persian, Arabic, Simplified Chinese, Russian, Spanish, Portuguese, French and German. 393 public UI/message keys in each language. Persistent in-app language selection; Persian and Arabic right-to-left layout; explicit sheet localization fixes macOS launch-language inheritance. Navigation, personal imports, server sections, Premium plans, privacy, Settings, dialogs and model messages use the selection. Apple system windows, StoreKit prices and third-party license originals follow their owning systems.
+Top navigation replaces sidebar; direct ping/update icons replace group menus; actual OS connection-start date supplies elapsed VPN time. Normal server lists/details show supplied country/city and protocol, not endpoint addresses. Cities are not fabricated and locations are not independently verified.
+Personal imports remain free and unrestricted; missing location metadata never blocks a personal or valid service entry. Premium remains Apple/service verified. Hostinger's existing per-user, leased node feeder reloads published location configuration; newly provisioned supported locations can appear on refresh without a new Mac build. No new operator approval or mandatory client location gate. Company Apple Premium Iran nodes no longer issue Apple-account credentials or appear in that feed; other platform account handling is unchanged.
+App Store draft description and keywords no longer advertise Iran/banking access. Removed optional marketing link because its destination still contains that old regional promotion. Replaced ten old draft screenshots with three actual current app captures. Updated What's New; did not press Update Review. Existing build 182 remains attached; new 183 is local only. iOS source/build unchanged for the next task.
+
+DELIVERED
+/Applications/V2S.app — local development-signed test copy, 1.0.2 (183).
+export/V2S.pkg — signed Mac App Store upload package, not uploaded.
+V2S.xcarchive — signed release archive.
+screenshots/ — three supported 2560x1600 assets from actual UI, top viewport crops and side padding; no fabricated connections or UI.
+language-proof/ — nine-language Settings images and screen-flow observations.
+
+VERIFIED
+Debug and Release compilation, export and signatures. All nine release language bundles. Resource completeness, format placeholders, dynamic messages, RTL, backward-compatible settings, unrestricted personal imports and endpoint display redaction. Main-page and Import/Free/Premium/plans/Activity/Privacy navigation in all nine languages. Persian selection survives app restart; English restored. Six synthetic feeder regressions cover new config refresh, subscriber-specific credentials and Iran exclusion without blocking private imports.
+
+REMAINING
+Do not submit until the user authorizes it. Build 183 has not replaced attached 182 in App Store Connect. Production subscription redemption, actual entitled Premium connection, entitlement persistence after restart and production Restore are still unverified; local development results cannot establish them. iOS update is a separate next step. Apple review outcome cannot be guaranteed. The public website's older Iran/banking copy has not been changed in this Mac task.

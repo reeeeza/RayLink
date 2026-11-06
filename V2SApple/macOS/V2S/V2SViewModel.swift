@@ -38,6 +38,7 @@ final class V2SViewModel: ObservableObject {
         }
         selectedProfileID = V2SStore.activeProfileID
         settings = V2SStore.loadSettings()
+        V2SLocalization.currentLanguage = settings.languageCode ?? "en"
         reload()
         premiumProfilesObservation = V2SPremiumStore.shared.$premiumProfiles
             .dropFirst()
@@ -234,6 +235,7 @@ final class V2SViewModel: ObservableObject {
 
     func updateSettings(_ updated: V2SSettings) {
         let wasCommunityEnabled = settings.communityDiscoveryEnabled
+        V2SLocalization.currentLanguage = updated.languageCode ?? "en"
         settings = updated
         V2SStore.saveSettings(updated)
         if updated.communityDiscoveryEnabled && !wasCommunityEnabled {
@@ -811,7 +813,7 @@ final class V2SActivityLog: ObservableObject {
         let time: Date
         let level: Level
         let message: String
-        var display: String { "\(time.formatted(date: .omitted, time: .standard))  \(level.label)  \(message)" }
+        @MainActor var display: String { "\(time.formatted(date: .omitted, time: .standard))  \(V2SLocalization.text(level.label))  \(V2SLocalization.text(message))" }
     }
 
     static let shared = V2SActivityLog()
